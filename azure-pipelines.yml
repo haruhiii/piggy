@@ -22,7 +22,7 @@ steps:
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     sonarQubeRunAnalysis: false
-    checkStyleRunAnalysis: false
+    checkStyleRunAnalysis: true
     pmdRunAnalysis: true
 
 
