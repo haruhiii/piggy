@@ -22,8 +22,8 @@ steps:
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
-    sonarQubeRunAnalysis: false
-    checkStyleRunAnalysis: true
+    sonarQubeRunAnalysis: true
+    checkStyleRunAnalysis: false
 
 
 - task: CopyFiles@2
