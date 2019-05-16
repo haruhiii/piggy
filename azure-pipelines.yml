@@ -30,20 +30,17 @@ steps:
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
     Contents: '**/piggy-0.0.1-SNAPSHOT.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/drop/jar'
     
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
     Contents: '**/surefire-reports/TEST-*.xml'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/drop/test'
+
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/drop'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/surefire-reports/**'
-    goals: 'package'
