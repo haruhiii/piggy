@@ -7,11 +7,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-
 public class Classes {
 
 	private int Class_id;
 	private String Class_name;
 	private List<Course> course;
-	
+
 }
