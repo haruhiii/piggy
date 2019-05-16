@@ -29,13 +29,13 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**/target/**/piggy-0.0.1-SNAPSHOT.jar'
+    Contents: '**/piggy-0.0.1-SNAPSHOT.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**/surefire-reports/**'
+    Contents: '**/surefire-reports/TEST-*.xml'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
