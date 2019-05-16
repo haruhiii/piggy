@@ -17,6 +17,5 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads2() {
 		System.out.println("2");
-		
 	}
 }
