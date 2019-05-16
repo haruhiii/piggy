@@ -14,6 +14,11 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '/home/vsts/work/1/s/target/piggy-0.0.1-SNAPSHOT.jar'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
