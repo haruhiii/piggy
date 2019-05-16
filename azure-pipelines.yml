@@ -11,7 +11,6 @@ pool:
 
 steps:
 
-
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -22,8 +21,9 @@ steps:
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
-    sonarQubeRunAnalysis: true
+    sonarQubeRunAnalysis: false
     checkStyleRunAnalysis: false
+    pmdRunAnalysis: true
 
 
 - task: CopyFiles@2
