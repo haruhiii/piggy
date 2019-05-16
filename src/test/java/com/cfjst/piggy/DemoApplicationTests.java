@@ -14,5 +14,9 @@ public class DemoApplicationTests {
 		System.out.println("hello world");
 		ks
 	}
-
+	@Test
+	public void contextLoads2() {
+		System.out.println("2");
+		
+	}
 }
