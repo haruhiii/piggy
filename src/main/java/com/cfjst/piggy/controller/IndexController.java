@@ -9,7 +9,7 @@ public class IndexController {
 
 	 @RequestMapping("hello")
 	 public String hello()  {
-		return "hello";s
+		return "hello";
 	}
 	 
 }
