@@ -1,2 +1,9 @@
+
+
 server:
-  port: 8080
+  port: 8080 # 设置端口
+
+
+spring:
+  thymeleaf:
+    cache: false # 关闭缓存

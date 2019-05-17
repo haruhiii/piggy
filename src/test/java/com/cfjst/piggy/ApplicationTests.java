@@ -5,17 +5,17 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
+/**
+ * 入口测试
+ */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DemoApplicationTests {
+public class ApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("hello worsld");
 		
-	}
-	@Test
-	public void contextLoads2() {
-		System.out.println("2");
 	}
 }
