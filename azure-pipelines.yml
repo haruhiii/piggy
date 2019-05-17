@@ -10,40 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: MysqlDeploymentOnMachineGroup@1
-  inputs:
-    TaskNameSelector: 'InlineSqlTask'
-    SqlInline: 'DROP TABLE IF EXISTS `student`;
-       SET character_set_client = utf8mb4 ;
-      CREATE TABLE `student` (
-        `id` int(11) NOT NULL,
-        `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-        `name` varchar(45) DEFAULT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-      
-      
-      LOCK TABLES `student` WRITE;
-      INSERT INTO `student` VALUES (2016051090,''123456'',''唐东林''),(2016051091,''123456'',''希旭辉''),(2016051092,''123456'',''安母祥''),(2016051093,''123456'',''沈林凡''),(2016051094,''123456'',''黑富福'');
-      UNLOCK TABLES;
-      
-      
-      DROP TABLE IF EXISTS `teacher`;
-       SET character_set_client = utf8mb4 ;
-      CREATE TABLE `teacher` (
-        `id` int(11) NOT NULL,
-        `password` varchar(45) NOT NULL,
-        `name` varchar(45) DEFAULT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-      
-      
-      LOCK TABLES `teacher` WRITE;
-      INSERT INTO `teacher` VALUES (10000,''123456'',''郑丰''),(10001,''123456'',''郑华''),(10002,''123456'',''华丰''),(10003,''123456'',''华郑'');
-      UNLOCK TABLES;'
-    ServerName: 'localhost'
-    SqlUsername: 'root'
-    SqlPassword: '123456'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
