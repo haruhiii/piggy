@@ -10,22 +10,37 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testRunTitle: 'test'
+    codeCoverageToolOption: 'Cobertura'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    sonarQubeRunAnalysis: false
+    checkStyleRunAnalysis: true
+    pmdRunAnalysis: true
+
+
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**/target/**/piggy-0.0.1-SNAPSHOT.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '**/piggy-0.0.1-SNAPSHOT.jar'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/drop/jar'
+    
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Agent.BuildDirectory)'
+    Contents: '**/surefire-reports/TEST-*.xml'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/drop/test'
+
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/drop'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'

@@ -12,6 +12,10 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads() {
 		System.out.println("hello world");
+		
 	}
-
+	@Test
+	public void contextLoads2() {
+		System.out.println("2");
+	}
 }
