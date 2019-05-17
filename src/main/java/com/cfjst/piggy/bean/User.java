@@ -1,16 +1,17 @@
 package com.cfjst.piggy.bean;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 
-// TODO 该类留不留存疑
-public class User{
+public  class User{
 
-	private int id;
+	private Integer id;
 	private String name;
     private String password;
-    private String type;
 	
 }
