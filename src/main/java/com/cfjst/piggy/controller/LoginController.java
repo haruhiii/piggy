@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
- * 通用请求
+ * 登录请求
  */
 
 
 @Controller
-public class IndexController {
+public class LoginController {
 
-	@RequestMapping("/")
-	public String login()  {
-		return "index";
-	}
-	 
+    @RequestMapping("/login")
+    public String hello()  {
+        return "login";
+    }
+    
 }
