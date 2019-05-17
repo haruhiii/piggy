@@ -8,11 +8,15 @@ import lombok.Setter;
 
 public class Course {
 
-	private int CourseId;
-	private String Name;
-	private int grade;
-	private Teacher teachers;
-	Classes classes;
+	/**
+	 * 这里需要一丢丢注释
+	 */
+
+	private Integer id;
+	private String name;
+	private Integer grade;
+	private Teacher teacher;
+	private Clazz clazz;
 	
 
 }
