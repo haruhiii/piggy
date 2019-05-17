@@ -1,4 +1,7 @@
 package com.cfjst.piggy.bean;
+
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,10 +10,14 @@ import lombok.Setter;
 
 public class Student {
 
-	private int Student_id;
-	private String Name;
+	/**
+	 * 这里需要一丢丢注释
+	 */
+
+	private Integer id;
+	private String name;
 	private int sex;
-	private String Password;
-	private String Course;
+	private String password;
+	private List<Course> courses;
 	
 }
