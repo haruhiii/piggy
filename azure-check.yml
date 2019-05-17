@@ -22,25 +22,5 @@ steps:
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     sonarQubeRunAnalysis: false
-    checkStyleRunAnalysis: true
-    pmdRunAnalysis: true
-
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**/piggy-0.0.1-SNAPSHOT.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/drop/jar'
-    
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**/surefire-reports/TEST-*.xml'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/drop/test'
-
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/drop'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    checkStyleRunAnalysis: false
+    pmdRunAnalysis: false
