@@ -19,17 +19,13 @@ public interface StudentDao {
      * 按ID查找用户
      * @param id 学号或工号
      */
-    @Select("select * from student where id=#{id}")
-    @Results({
-        @Result(property = "course", column = "id",
-                many = @Many(select = "com.cfjst.piggy.dao.CourseDao.findByClazzId"))
-    })
+    @Select("select * from `sbff`.student where id=#{id}")
     public Student findById(Long id);
     
     /**
      * 添加用户
      */
-    @Insert("INSERT INTO `sbff`.`student` (`id`, `password`, `name`) VALUES (#{id}, #{password}, #{name})")
+    @Insert("INSERT INTO `sbff`.`student` (`id`, `password`, `name`,`id_clazz`) VALUES (#{id}, #{password}, #{name}, #{clazzId})")
     public void add(Student student);
 
     /**

@@ -1,10 +1,8 @@
 package com.cfjst.piggy.dao;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import com.cfjst.piggy.bean.Clazz;
 import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.util.SqlUtil;
 
@@ -33,6 +31,10 @@ public class CourseDaoTests {
         dao = sqlSession.getMapper(CourseDao.class);
     }
 
+    @After
+    public void done(){
+        sqlSession.close();
+    }
 
     @Test
     public void findByClazzIdTests(){
@@ -41,17 +43,24 @@ public class CourseDaoTests {
         List<Course> courses = dao.findByClazzId(id);
 
         for(Course course:courses){
-            System.out.println(course.getId());
+            System.out.println(course.getClazzId());
         }
     }
 
+    /**
+     *  ？？？？？？？？？
+     * 94正常 93不正常？？
+     */
+    // TODO 有问题
     @Test
     public void findByStudentIdTests(){
         //通过学生Id获取课程信息测试
-        Integer id = 2016051093;
+        Long id = Long.valueOf(2016051092);
         List<Course> courses = dao.findByStudentId(id);
+        System.out.println(id );
 
         for(Course course:courses){
+
             System.out.println(course.getId());
         }
     }

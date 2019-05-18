@@ -16,7 +16,7 @@ public class Course {
 
 	private Integer id;
 	private String name;
-	private Clazz clazzId;
+	private Long clazzId;
 	
 
 }

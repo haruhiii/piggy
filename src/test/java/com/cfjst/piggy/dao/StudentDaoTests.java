@@ -37,7 +37,6 @@ public class StudentDaoTests {
     public void done(){
         sqlSession.close();
     }
-
     @Test
     public void findByIdTest()  {
         //查找学生测试
@@ -51,7 +50,7 @@ public class StudentDaoTests {
     public void addTest()  {
         //添加、删除学生测试
         Long id = Long.valueOf(1111111111) ;
-        Student student = new Student(id,"123456","绿富福");        
+        Student student = new Student(id,"123456","绿富福",4);        
         dao.add(student);        
         assertEquals("绿富福", dao.findById(id).getName());
 
@@ -64,7 +63,7 @@ public class StudentDaoTests {
     public void updateTest()  {
         //修改学生信息测试
         Long id = Long.valueOf(2016051094);
-        Student student = new Student(id,"123456","白富福");        
+        Student student = new Student(id,"123456","白富福",2);        
         dao.update(student);        
         assertEquals("白富福", dao.findById(id).getName());
         student.setName("黑富福");

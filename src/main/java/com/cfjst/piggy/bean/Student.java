@@ -19,12 +19,13 @@ public class Student {
 	private String name;
     private String password;
 	private int sex;
-	private Integer classId;
+	private Integer clazzId;	
 
-	public Student(Long id, String password, String name){
+	public Student(Long id, String password, String name,Integer clazzId){
 		this.id = id;
 		this.password = password;
 		this.name = name;
+		this.clazzId = clazzId;
 	}
 	
 	public void setId(Integer id){
