@@ -19,7 +19,7 @@ public class Student {
 	private String name;
     private String password;
 	private int sex;
-	private Long classId;
+	private Integer classId;
 
 	public Student(Long id, String password, String name){
 		this.id = id;

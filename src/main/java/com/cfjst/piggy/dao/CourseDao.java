@@ -16,10 +16,35 @@ import org.apache.ibatis.annotations.One;
 
 
 public interface CourseDao {
+
+
+
+	@Select("select * from course where id_clazz = #{id}")
+	@Results({
+		@Result(property = "classId",column = "id_class")
+	})
+	public List<Course> findByClazzId(Integer id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * find
 	 * @return
 	 */
+
 	@Select("select * from course")
     @Results({
     	//一对一，one=@one
@@ -32,7 +57,7 @@ public interface CourseDao {
     })
     public List<Course> findAll();
     
-    @Select("select * from course where Course_id=#{CourseId}")
+    @Select("select * from course where id = #{id}")
     @Results({
     	//一对一，one=@one
     	@Result(property="CourseId",column="Course_id", id=true),
@@ -44,7 +69,10 @@ public interface CourseDao {
     	    one = @One(select="com.example.demo.dao.TeacherDao.findByTeacherId",fetchType=FetchType.EAGER))
     })
     public Course findById(int CourseId);
-    
+	
+	
+
+
     @Insert("insert into course values (#{CourseId}, #{Name}, #{classes.Class_id}, #{teachers.Teacher_id}, 90)")
     public void add(Course course);
     
