@@ -16,6 +16,11 @@ public class TeacherService {
         dao = sqlSession.getMapper(TeacherDao.class);
     }
 
+    /**
+     * 登录
+     * @param student 教师信息，至少包含Id和密码
+     * @return 是否登陆成功
+     */
     boolean login(Teacher teacher){
         Teacher tea = dao.findById(teacher.getId());
         if(null!=tea){

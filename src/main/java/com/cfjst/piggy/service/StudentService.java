@@ -16,6 +16,12 @@ public class StudentService {
         dao = sqlSession.getMapper(StudentDao.class);
     }
 
+
+    /**
+     * 登录
+     * @param student 学生信息，至少包含Id和密码
+     * @return 是否登陆成功
+     */
     boolean login(Student student){
         Student stu = dao.findById(student.getId());
         if(null!=stu){

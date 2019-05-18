@@ -2,21 +2,21 @@ package com.cfjst.piggy.service;
 
 import static org.junit.Assert.assertEquals;
 
-
-
 import com.cfjst.piggy.bean.Student;
+import com.cfjst.piggy.bean.Teacher;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * 学生服务类测试
+ * 教师服务类测试
  */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StudentServiceTests {
+public class TeacherServiceTests {
     
 
     /**
@@ -24,13 +24,13 @@ public class StudentServiceTests {
      */
     @Test
     public void loginTest() {
-        StudentService service = new StudentService();
-        Student student = new Student(Integer.valueOf(2016051094), "123455","");
+        TeacherService service = new TeacherService();
+        Teacher teacher = new Teacher(Integer.valueOf(2016051094), "123455","");
         /** 登陆失败测试 */
-        assertEquals(false, service.login(student));
-        student.setPassword("123456");
+        assertEquals(false, service.login(teacher));
+        teacher.setPassword("123456");
         /** 登陆成功测试 */
-        assertEquals(true, service.login(student));
+        assertEquals(true, service.login(teacher));
     }
     
 }
