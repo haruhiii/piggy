@@ -2,10 +2,8 @@ package com.cfjst.piggy.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
 
 import com.cfjst.piggy.bean.Clazz;
-import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.util.SqlUtil;
 
 import org.apache.ibatis.session.SqlSession;

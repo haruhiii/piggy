@@ -1,7 +1,6 @@
 package com.cfjst.piggy.bean;
 
 
-import java.awt.List;
 
 import lombok.Getter;
 import lombok.Setter;

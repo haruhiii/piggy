@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 
 
-import com.cfjst.piggy.bean.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,15 +24,11 @@ public class StudentServiceTests {
     @Test
     public void loginTest() {
         StudentService service = new StudentService();
-        Student student = new Student();
         Long id=Long.valueOf(2016051094);
-        student.setId(id);
-        student.setPassword("123455");
         /** 登陆失败测试 */
-        assertEquals(null, service.login(student));
-        student.setPassword("123456");
+        assertEquals(null, service.login(id,"123455"));
         /** 登陆成功测试 */
-        assertEquals(id, service.login(student).getId());
+        assertEquals(id, service.login(id,"123456").getId());
     }
     
 }

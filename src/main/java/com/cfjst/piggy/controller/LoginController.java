@@ -8,7 +8,6 @@ import com.cfjst.piggy.service.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -26,34 +25,23 @@ public class LoginController {
                         @RequestParam("password") String password,
                         @RequestParam("type") String type)  {
 
-        System.out.println(password);
-        System.out.println(id);
         
         if(!StringUtils.isEmpty(type)){
             if(type.equals("student")){
 
-
                 //  学生认证
-
                 StudentService service = new StudentService();
-                Student stu = new Student();
-                stu.setId(id);
-                stu.setPassword(password);
-                Student student = service.login(stu);
-                if(service.login(student)!=null){
+                Student student = service.login(id,password);
+                if(student!=null){
                     return "student";
                 }
 
             }else if (type.equals("teacher")){
 
                 //  教师认证
-
                 TeacherService service = new TeacherService();
-                Teacher tea = new Teacher();
-                tea.setId(id);
-                tea.setPassword(password);
-                Teacher teacher = service.login(tea);
-                if(service.login(teacher)!=null){
+                Teacher teacher = service.login(id,password);
+                if(teacher!=null){
                     return "teacher";
                 }
 

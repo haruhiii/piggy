@@ -22,10 +22,10 @@ public class StudentService {
      * @param student 学生信息，至少包含Id和密码
      * @return 是否登陆成功
      */
-    public Student login(Student student){
-        Student stu = dao.findById(student.getId());
+    public Student login(Long id, String password){
+        Student stu = dao.findById(id);
         if(null!=stu){
-            if(stu.getPassword().equals(student.getPassword())){
+            if(stu.getPassword().equals(password)){
                 return stu;
             }
         }

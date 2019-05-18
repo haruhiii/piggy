@@ -21,10 +21,10 @@ public class TeacherService {
      * @param student 教师信息，至少包含Id和密码
      * @return 是否登陆成功
      */
-    public Teacher login(Teacher teacher){
-        Teacher tea = dao.findById(teacher.getId());
+    public Teacher login(Long id, String password){
+        Teacher tea = dao.findById(id);
         if(null!=tea){
-            if(tea.getPassword().equals(teacher.getPassword())){
+            if(tea.getPassword().equals(password)){
                 return tea;
             }
         }
