@@ -17,7 +17,7 @@ public class Clazz {
 	 * 由于class为Java关键字，故取名为clazz
 	 */
 	
-	private Integer id;
+	private Long id;
 	private String name;
 	private List<Course> courses;
 

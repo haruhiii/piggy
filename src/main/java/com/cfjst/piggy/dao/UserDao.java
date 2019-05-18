@@ -1,6 +1,5 @@
 package com.cfjst.piggy.dao;
 
-import java.util.List;
 
 import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.bean.Teacher;

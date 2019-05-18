@@ -1,6 +1,5 @@
 package com.cfjst.piggy.bean;
 
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,16 +15,17 @@ public class Student {
 	 * 
 	 */
 
-	private Integer id;
+	private Long id;
 	private String name;
     private String password;
 	private int sex;
-	private List<Course> courses;
+	private Integer clazzId;	
 
-	public Student(Integer id, String password, String name){
+	public Student(Long id, String password, String name,Integer clazzId){
 		this.id = id;
 		this.password = password;
 		this.name = name;
+		this.clazzId = clazzId;
 	}
 	
 	public void setId(Integer id){

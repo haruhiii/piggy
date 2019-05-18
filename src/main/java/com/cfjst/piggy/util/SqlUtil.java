@@ -3,7 +3,6 @@ package com.cfjst.piggy.util;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.cfjst.piggy.dao.UserDao;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -45,7 +44,5 @@ public class SqlUtil {
     /**
      * 关闭sqlSession
      */
-    public void closeSession() {
-        sqlSession.close();
-    }
+
 }

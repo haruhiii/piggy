@@ -16,9 +16,7 @@ public class Course {
 
 	private Integer id;
 	private String name;
-	private Integer grade;
-	private Teacher teacher;
-	private Clazz clazz;
+	private Long clazzId;
 	
 
 }
