@@ -14,7 +14,7 @@ public class Teacher {
 
 	/**
 	 * 这里需要一丢丢注释
-	 * 教师课程
+	 * 教师
 	 */
 
 	private Long id;
@@ -22,6 +22,7 @@ public class Teacher {
 	private String password;
 	private int sex;
 	private Course course;
+
 
 	public Teacher(Long id, String password, String name) {
 		this.id = id;
