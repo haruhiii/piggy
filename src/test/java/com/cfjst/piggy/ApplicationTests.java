@@ -35,10 +35,10 @@ public class ApplicationTests {
 
 
 
-		Tasks tasks = new Tasks();
-		tasks.addBigTask("平时作业", 1, 0.25f);
+		// Tasks tasks = new Tasks();
+		// tasks.addBigTask("平时作业", 1, 0.25f);
 
-		
+
 
 
 

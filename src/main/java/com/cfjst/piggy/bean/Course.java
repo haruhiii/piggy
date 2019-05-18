@@ -14,7 +14,7 @@ public class Course {
 	 * 这里需要一丢丢注释
 	 */
 
-	private Long id;
+	private Integer id;
 	private String name;
 	private Clazz clazzId;
 	

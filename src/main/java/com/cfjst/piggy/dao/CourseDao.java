@@ -2,6 +2,7 @@ package com.cfjst.piggy.dao;
 
 import java.util.List;
 
+import com.cfjst.piggy.bean.Clazz;
 import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.Student;
 
@@ -13,83 +14,49 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.mapping.FetchType;
 import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Many;
 
 
 public interface CourseDao {
 
+	/**
+	 * 通过班级Id获取课程信息
+	 * @param id 班级Id
+	 * @return 课程信息
+	 */
 
-
-	@Select("select * from course where id_clazz = #{id}")
+	@Select("SELECT course.id,course.name FROM sbff.course_clazz ,sbff.clazz ,sbff.course WHERE course_clazz.id_clazz=clazz.id AND course_clazz.id_course=course.id AND clazz.id=#{id}")
 	@Results({
-		@Result(property = "classId",column = "id_class")
-	})
+        @Result(property = "id", column = "course.id"),
+        @Result(property = "name", column = "course.name"),
+        @Result(property = "clazzId", column = "id_clazz")
+    })
 	public List<Course> findByClazzId(Integer id);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	/**
-	 * find
-	 * @return
+	 * 通过学生Id获取课程信息
+	 * @param id 班级Id
+	 * @return 课程信息
 	 */
-
-	@Select("select * from course")
-    @Results({
-    	//一对一，one=@one
-    	@Result(property="CourseId",column="Course_id", id=true),
-    	@Result(property="Name",column="Name"),
-    	@Result(property="classes",column="Class_id",
-    		one = @One(select="com.example.demo.dao.ClassesDao.findByClassId",fetchType=FetchType.EAGER)),
-    	@Result(property="teachers",column="Teacher_id",
-    	    one = @One(select="com.example.demo.dao.TeacherDao.findByTeacherId",fetchType=FetchType.EAGER))
+	@Select("SELECT course.id,course.name,clazz.id as id_class FROM sbff.course_clazz ,sbff.clazz ,sbff.course,sbff.student where course_clazz.id_clazz=clazz.id AND course_clazz.id_course=course.id AND clazz.id=student.id_clazz AND student.id=#{id}")
+	@Results({
+        @Result(property = "id", column = "course.id"),
+        @Result(property = "name", column = "course.name"),
+        @Result(property = "clazzId", column = "id_clazz")
     })
-    public List<Course> findAll();
-    
-    @Select("select * from course where id = #{id}")
-    @Results({
-    	//一对一，one=@one
-    	@Result(property="CourseId",column="Course_id", id=true),
-    	@Result(property="Name",column="Name"),
-    	@Result(property="grade",column="grade"),
-    	@Result(property="classes",column="Class_id",
-    		one = @One(select="com.example.demo.dao.ClassesDao.findByClassId",fetchType=FetchType.EAGER)),
-    	@Result(property="teachers",column="Teacher_id",
-    	    one = @One(select="com.example.demo.dao.TeacherDao.findByTeacherId",fetchType=FetchType.EAGER))
-    })
-    public Course findById(int CourseId);
-	
-	
+	public List<Course> findByStudentId(Integer id);
 
 
-    @Insert("insert into course values (#{CourseId}, #{Name}, #{classes.Class_id}, #{teachers.Teacher_id}, 90)")
-    public void add(Course course);
-    
-    @Update({ "update course set Name = #{Name},Class_id = #{classes.Class_id},Teacher_id = #{teachers.Teacher_id} where Course_id = #{CourseId}" })
-    public void update(Course course);
-    
-    @Delete("delete from course where Course_id = #{CourseId}")
-    public void delete(int CourseId);
-    
-    @Select("select * from student")
-    @Results({
-    	//一对一，one=@one
-    	@Result(property="Student_id",column="Student_id", id=true),
-    	@Result(property="Name",column="Name"),
-    	@Result(property="sex",column="sex"),
-    	@Result(property="Password",column="Password"),
-    	@Result(property="Course",column="Course")
-    })
-    public Student findStudent();
+
+
+
+
+
+
+
+
+
+
 }

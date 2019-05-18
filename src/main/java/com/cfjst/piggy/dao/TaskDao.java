@@ -18,6 +18,11 @@ import org.apache.ibatis.mapping.FetchType;
 public interface TaskDao {
 
 
+    
+    @Select("select * from clazz where id = #{id}")
+    public List<Course> findCourseByStudentId(Long id);
+
+
 
     /**
      * 获取班级的信息，包括课程信息
