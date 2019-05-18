@@ -14,7 +14,7 @@ public class Course {
 	 * 这里需要一丢丢注释
 	 */
 
-	private Integer id;
+	private Long id;
 	private String name;
 	private Integer grade;
 	private Teacher teacher;

@@ -2,7 +2,6 @@ package com.cfjst.piggy.service;
 
 import static org.junit.Assert.assertEquals;
 
-import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.bean.Teacher;
 
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class TeacherServiceTests {
     @Test
     public void loginTest() {
         TeacherService service = new TeacherService();
-        Teacher teacher = new Teacher(Integer.valueOf(2016051094), "123455","");
+        Teacher teacher = new Teacher(Long.valueOf(10003), "123455","");
         /** 登陆失败测试 */
         assertEquals(false, service.login(teacher));
         teacher.setPassword("123456");

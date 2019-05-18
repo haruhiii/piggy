@@ -17,13 +17,13 @@ public class Teacher extends User{
 	 * 
 	 */
 	
-	private Integer id;
+	private Long id;
 	private String name;
     private String password;
-	private Integer sex;
+	private int sex;
 	private List<Course> courses;
 
-	public Teacher(Integer id, String password, String name){
+	public Teacher(Long id, String password, String name){
 		this.id = id;
 		this.password = password;
 		this.name = name;

@@ -18,7 +18,7 @@ public interface StudentDao {
      * @param id 学号或工号
      */
     @Select("select * from student where id=#{id}")
-    public Student findById(Integer id);
+    public Student findById(Long id);
     
     /**
      * 添加用户
@@ -31,7 +31,7 @@ public interface StudentDao {
      * @param id 学号或工号
      */
     @Delete("DELETE FROM `sbff`.`student` WHERE (`id` = #{id})")
-    public void delById(Integer id);
+    public void delById(Long id);
 
     /**
      * 修改用户信息

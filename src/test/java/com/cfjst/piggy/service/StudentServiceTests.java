@@ -25,7 +25,7 @@ public class StudentServiceTests {
     @Test
     public void loginTest() {
         StudentService service = new StudentService();
-        Student student = new Student(Integer.valueOf(2016051094), "123455","");
+        Student student = new Student(Long.valueOf(2016051094), "123455","");
         /** 登陆失败测试 */
         assertEquals(false, service.login(student));
         student.setPassword("123456");

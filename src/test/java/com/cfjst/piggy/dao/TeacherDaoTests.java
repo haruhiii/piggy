@@ -42,7 +42,7 @@ public class TeacherDaoTests {
     public void findByIdTest()  {
         //查找测试
 
-        Integer id = 10003;
+        Long id = Long.valueOf(10003);
         assertEquals("华郑", dao.findById(id).getName());
 
     }
@@ -51,7 +51,7 @@ public class TeacherDaoTests {
     @Test
     public void addTest()  {
         //添加、删除测试
-        Integer id = 11111;
+        Long id = Long.valueOf(11111);
         Teacher teacher = new Teacher(id,"123456","华斜");        
         dao.add(teacher);        
         assertEquals("华斜", dao.findById(id).getName());
@@ -63,7 +63,7 @@ public class TeacherDaoTests {
     @Test
     public void updateTest()  {
         //修改信息测试
-        Integer id = 10003;
+        Long id = Long.valueOf(10003);
         Teacher teacher = new Teacher(id,"123456","华歪");        
         dao.update(teacher);        
         assertEquals("华歪", dao.findById(id).getName());
