@@ -45,7 +45,5 @@ public class SqlUtil {
     /**
      * 关闭sqlSession
      */
-    public void closeSession() {
-        sqlSession.close();
-    }
+
 }
