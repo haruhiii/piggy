@@ -1,9 +1,7 @@
 package com.cfjst.piggy.dao;
 
-import java.util.List;
 
 import com.cfjst.piggy.bean.Student;
-import com.cfjst.piggy.bean.Teacher;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

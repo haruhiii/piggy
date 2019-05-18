@@ -4,7 +4,6 @@ package com.cfjst.piggy.dao;
 import static org.junit.Assert.assertEquals;
 
 
-import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.bean.Teacher;
 import com.cfjst.piggy.util.SqlUtil;
 
@@ -17,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * 学生数据库接口测试
+ * 教师数据库接口测试
  */
 
 @RunWith(SpringRunner.class)
@@ -55,14 +54,14 @@ public class TeacherDaoTests {
         Integer id = 11111;
         Teacher teacher = new Teacher(id,"123456","华斜");        
         dao.add(teacher);        
-        assertEquals("华倒", dao.findById(id).getName());
+        assertEquals("华斜", dao.findById(id).getName());
         dao.delById(id);
         assertEquals(null, dao.findById(id));
     }
 
 
     @Test
-    public void addStudentTest()  {
+    public void updateTest()  {
         //修改信息测试
         Integer id = 10003;
         Teacher teacher = new Teacher(id,"123456","华歪");        

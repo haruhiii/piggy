@@ -6,9 +6,9 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/sbff?serverTimezone=UTC"/>
+        <property name="url" value="jdbc:mysql://rm-bp10qg2l59n6est67ao.mysql.rds.aliyuncs.com:3306/sbff?serverTimezone=UTC"/>
         <property name="username" value="root"/>
-        <property name="password" value="123456"/>
+        <property name="password" value="SLWnzq520"/>
       </dataSource>
     </environment>
   </environments>

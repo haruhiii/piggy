@@ -47,14 +47,13 @@ public class StudentDaoTests {
 
     }
 
-
     @Test
     public void addTest()  {
         //添加、删除学生测试
         Integer id = 1111111111;
         Student student = new Student(id,"123456","绿富福");        
         dao.add(student);        
-        assertEquals("黑富福", dao.findById(id).getName());
+        assertEquals("绿富福", dao.findById(id).getName());
 
         dao.delById(id);
         assertEquals(null, dao.findById(id));
@@ -62,7 +61,7 @@ public class StudentDaoTests {
 
 
     @Test
-    public void addStudentTest()  {
+    public void updateTest()  {
         //修改学生信息测试
         Integer id = 2016051094;
         Student student = new Student(id,"123456","白富福");        
@@ -70,7 +69,7 @@ public class StudentDaoTests {
         assertEquals("白富福", dao.findById(id).getName());
         student.setName("黑富福");
         dao.update(student);        
-        assertEquals("白富福", dao.findById(id).getName());
+        assertEquals("黑富福", dao.findById(id).getName());
     }
    
     
