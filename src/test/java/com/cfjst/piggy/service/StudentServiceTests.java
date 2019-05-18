@@ -25,12 +25,15 @@ public class StudentServiceTests {
     @Test
     public void loginTest() {
         StudentService service = new StudentService();
-        Student student = new Student(Long.valueOf(2016051094), "123455","",4);
+        Student student = new Student();
+        Long id=Long.valueOf(2016051094);
+        student.setId(id);
+        student.setPassword("123455");
         /** 登陆失败测试 */
-        assertEquals(false, service.login(student));
+        assertEquals(null, service.login(student));
         student.setPassword("123456");
         /** 登陆成功测试 */
-        assertEquals(true, service.login(student));
+        assertEquals(id, service.login(student).getId());
     }
     
 }

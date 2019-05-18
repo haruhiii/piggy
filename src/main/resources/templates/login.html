@@ -14,7 +14,7 @@
 
   <div class=" layui-main login-content">
     <h1 class="login-title">伪の过程化考核系统</h1>
-    <form class="layui-form" action="/users/login" method="POST"> 
+    <form class="layui-form" action="/login" method="POST"> 
       <div class="layui-form-item">
           <input  type="text" name="id" placeholder="请输入学号或工号"  class="layui-input">
       </div>
@@ -23,11 +23,10 @@
       </div>
       <div class="layui-form-item">
           <label class="layui-form-label" >选择身份：</label>
-
           <div class="layui-input-block">
-            <input type="radio" name="type" value="教师" title="教师" >
-            <input type="radio" name="type" value="学生" title="学生" checked>
-            <input type="radio" name="type" value="管理员" title="管理员" >
+            <input type="radio" name="type" value="teacher" title="教师" >
+            <input type="radio" name="type" value="student" title="学生" checked>
+            <input type="radio" name="type" value="administer" title="管理员" >
           </div>
       </div>
       <input type="submit" class="layui-btn login-btn"  value="登录"/>
