@@ -6,12 +6,8 @@ import java.util.List;
 import com.cfjst.piggy.bean.AnyUser;
 import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.bean.Teacher;
-import com.cfjst.piggy.dao.TeacherDao;
-import com.cfjst.piggy.util.SqlUtil;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
