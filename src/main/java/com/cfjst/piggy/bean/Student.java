@@ -21,14 +21,14 @@ public class Student {
 	private int sex;
 	private Integer clazzId;	
 
-	public Student(Long id, String password, String name,Integer clazzId){
+	public Student(Long id, String password, String name,Integer clazzId ){
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.clazzId = clazzId;
 	}
 	
-	public void setId(Integer id){
-		//啥也不做，本条注释勿删
+	public Student() {
 	}
+
 }

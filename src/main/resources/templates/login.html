@@ -1,38 +1,46 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
 	<title>伪の成都信息工程大学课程过程化考核系统</title>
   <link rel="stylesheet" href="layui/css/layui.css">
   <link rel="stylesheet" href="css/login.css">  
-  <script src="layui/layui.js"></script>
-  <script src="js/js.js"></script>
+
 </head>
 
 <body>
 
   <div class=" layui-main login-content">
+
     <h1 class="login-title">伪の过程化考核系统</h1>
-    <form class="layui-form" action="/users/login" method="POST"> 
+    <form class="layui-form" action="/login" method="POST" lay-filter="login-form">
       <div class="layui-form-item">
-          <input  type="text" name="id" placeholder="请输入学号或工号"  class="layui-input">
-      </div>
-      <div class="layui-form-item">
-            <input  type="password" name="password" placeholder="请输入密码"  class="layui-input">
-      </div>
-      <div class="layui-form-item">
-          <label class="layui-form-label" >选择身份：</label>
+          <label class="layui-form-label" >账&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp号：</label>
 
-          <div class="layui-input-block">
-            <input type="radio" name="type" value="教师" title="教师" >
-            <input type="radio" name="type" value="学生" title="学生" checked>
-            <input type="radio" name="type" value="管理员" title="管理员" >
-          </div>
+        <div class="layui-input-block">
+          <input type="text" name="id"  lay-verify="id"  placeholder="请输入学号或工号" class="layui-input">
+        </div>
       </div>
-      <input type="submit" class="layui-btn login-btn"  value="登录"/>
-    </form>
+      <div class="layui-form-item">
+          <label class="layui-form-label" >密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码：</label>
+        <div class="layui-input-block">
+          <input type="password" name="password" lay-verify="pass|required" placeholder="请输入密码"  class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
 
+      <label class="layui-form-label" >选择身份：</label>
+      <div class="layui-input-block" aria-checked="">
+        <input type="radio" name="type" value="teacher" title="教师" >
+        <input type="radio" name="type" value="student" title="学生" checked>
+        <input type="radio" name="type" value="administer" title="管理员" >
+      </div>
+    </div>
+
+    <input class="remember-me" type="checkbox" checked="" name="open" lay-skin="switch"  lay-text="记住我|取消">
+    <button type="submit"  class="layui-btn login-btn" lay-submit="" lay-filter="demo1">登录</button>     
+</form>
 
     <div class="login-footer">
             <p>Copyright © 1 RuLaiFoZu. All Rights Reserved.</p>
@@ -40,5 +48,29 @@
   </div>
 
 </body>
+  <script src="layui/layui.js"></script>
+  
+  <script th:inline="javascript">
 
+      
+  layui.use(['layer', 'form'], function(){
+    var layer = layui.layer
+    ,form = layui.form;
+
+    form.verify({
+    id:[
+      /^\d{5,11}$/
+      ,'请输入正确的学号或工号'
+    ]
+    ,pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ]
+    });
+    var msg = [[ ${msg} ]];
+    if (msg!=null)
+        layer.msg(msg);
+  });
+ 
+  </script>
 </html>

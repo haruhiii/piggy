@@ -5,11 +5,102 @@
 	<meta charset="utf-8">
   <!--          这个界面啥也没有哟            -->
   <!--           判断用户是否登录             -->
+	<title>伪の成都信息工程大学课程过程化考核系统</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" href="css/login.css">  
+  <script src="layui/layui.js"></script>
+  <script>
+      layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+        ,layer = layui.layer
+        ,layedit = layui.layedit
+        ,laydate = layui.laydate;
+        
+        //日期
+        laydate.render({
+          elem: '#date'
+        });
+        laydate.render({
+          elem: '#date1'
+        });
+        
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+       
+        //自定义验证规则
+        form.verify({
+          title: function(value){
+            if(value.length < 5 || !new RegExp("^\d{m,n}$").username(value)){
+              return '213';
+            }
+          }
+          ,username:[
+              /^\d{m,n}$/
+              ,'请输入正确的学号或工号'
+
+          ]
+          ,pass: [
+            /^[\S]{6,12}$/
+            ,'密码必须6到12位，且不能出现空格'
+          ]
+          ,content: function(value){
+            layedit.sync(editIndex);
+          }
+        });
+        
+        
+        //监听提交
+        form.on('submit(demo1)', function(data){
+          layer.alert(JSON.stringify(data.field), {
+            title: '最终的提交信息'
+          })
+          return false;
+        });
+       
+        //表单初始赋值
+        form.val('example', {
+          "username": "贤心" // "name": "value"
+          ,"password": "123456"
+          ,"sex": "女"
+        })
+        
+        
+      });
+      </script>
 </head>
 
 <body>
-
-  <h1>你好呀</h1>
+    <form class="layui-form" action="" lay-filter="example">
+        <div class="layui-form-item">
+          <label class="layui-form-label">账号</label>
+          <div class="layui-input-block">
+            <input type="text" name="username"  lay-verify="required" autocomplete="on" placeholder="请输入标题" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">密码框</label>
+          <div class="layui-input-block">
+            <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+      
+        </div>
+        
+        
+        <div class="layui-form-item">
+          <label class="layui-form-label">单选框</label>
+          <div class="layui-input-block">
+            <input type="radio" name="sex" value="男" title="男" checked="">
+            <input type="radio" name="sex" value="女" title="女">
+          </div>
+        </div>
+       
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+          </div>
+        </div>
+      </form>
 
 </body>
 

@@ -1,6 +1,8 @@
 package com.cfjst.piggy.controller;
 
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,9 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	@RequestMapping("/")
-	public String login()  {
+	public String index(Map<String,Object> map)  {
+		map.put("msg", "Hello world!");
 		return "index";
 	}
 	 
+	@RequestMapping("/login")
+	public String login()  {
+
+		return "login";
+	}
 	
 }

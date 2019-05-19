@@ -3,11 +3,6 @@ package com.cfjst.piggy.dao;
 import java.util.List;
 
 import com.cfjst.piggy.bean.Clazz;
-import com.cfjst.piggy.bean.Course;
-import com.cfjst.piggy.bean.Student;
-
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
