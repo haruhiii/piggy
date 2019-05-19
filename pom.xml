@@ -41,9 +41,9 @@
       <version>3.5.1</version>
     </dependency>
     <dependency>
-	    <groupId>org.mybatis</groupId>
-	    <artifactId>mybatis-spring</artifactId>
-	    <version>2.0.1</version>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>2.0.1</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
@@ -55,11 +55,10 @@
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
     <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>fastjson</artifactId>
-        <version>1.2.58</version>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>1.4.0</version>
     </dependency>
   </dependencies>
   <build>
@@ -70,4 +69,9 @@
       </plugin>
     </plugins>
   </build>
+  <dependencyManagement>
+    <dependencies>
+      
+    </dependencies>
+  </dependencyManagement>
 </project>

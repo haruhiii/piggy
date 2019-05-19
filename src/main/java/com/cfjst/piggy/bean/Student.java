@@ -1,5 +1,8 @@
 package com.cfjst.piggy.bean;
 
+import java.util.List;
+
+import com.cfjst.piggy.service.CourseService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,15 +23,23 @@ public class Student {
     private String password;
 	private int sex;
 	private Integer clazzId;	
+	private List<Course> courses;
 
-	public Student(Long id, String password, String name,Integer clazzId){
+
+
+	public Student(Long id, String password, String name,Integer clazzId ){
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.clazzId = clazzId;
 	}
 	
-	public void setId(Integer id){
-		//啥也不做，本条注释勿删
+	public Student() {
+	}
+
+	public  List<Course> getCourses() {
+        CourseService service = new CourseService();
+        List<Course> courses = service.findByStudentId(this.id);
+		return courses;
 	}
 }
