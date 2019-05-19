@@ -1,5 +1,8 @@
 package com.cfjst.piggy.service;
 
+import java.util.List;
+
+import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.dao.StudentDao;
 import com.cfjst.piggy.util.SqlUtil;
@@ -38,4 +41,13 @@ public class StudentService {
         
         return dao.findById(id);
     }
+
+    public List<Course>  getCourses( Long id){
+        //通过学生Id获取课程信息
+        CourseService service = new CourseService();
+        List<Course> courses = service.findByStudentId(id);
+        return courses;
+      
+    } 
+
 }

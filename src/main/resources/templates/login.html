@@ -19,26 +19,25 @@
           <label class="layui-form-label" >账&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp号：</label>
 
         <div class="layui-input-block">
-          <input type="text" name="id"  lay-verify="id"  placeholder="请输入学号或工号" class="layui-input">
+          <input th:value=${id} type="text" name="id"  id="id" lay-verify="id"  placeholder="请输入学号或工号" class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">
           <label class="layui-form-label" >密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码：</label>
         <div class="layui-input-block">
-          <input type="password" name="password" lay-verify="pass|required" placeholder="请输入密码"  class="layui-input">
+          <input type="password" name="password" id="password" lay-verify="pass|required" placeholder="请输入密码"  class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">
 
       <label class="layui-form-label" >选择身份：</label>
-      <div class="layui-input-block" aria-checked="">
-        <input type="radio" name="type" value="teacher" title="教师" >
-        <input type="radio" name="type" value="student" title="学生" checked>
-        <input type="radio" name="type" value="administer" title="管理员" >
+      <div class="layui-input-block" >
+        <input type="radio" name="type" value="Teacher" title="教师" >
+        <input type="radio" name="type" value="Student" title="学生" checked="checked" >
+        <input type="radio" name="type" value="Administer" title="管理员" >
       </div>
     </div>
-
-    <input class="remember-me" type="checkbox" checked="" name="open" lay-skin="switch"  lay-text="记住我|取消">
+    <input type="checkbox"  class="remember-me" title="记住我" checked="">
     <button type="submit"  class="layui-btn login-btn" lay-submit="" lay-filter="demo1">登录</button>     
 </form>
 
@@ -51,8 +50,6 @@
   <script src="layui/layui.js"></script>
   
   <script th:inline="javascript">
-
-      
   layui.use(['layer', 'form'], function(){
     var layer = layui.layer
     ,form = layui.form;
@@ -64,12 +61,20 @@
     ]
     ,pass: [
       /^[\S]{6,12}$/
-      ,'密码必须6到12位，且不能出现空格'
+      ,'密码格式错误，请重新输入'
     ]
     });
     var msg = [[ ${msg} ]];
+    var focus = [[ ${focus} ]];
+    var type = [[ ${type} ]];
     if (msg!=null)
         layer.msg(msg);
+
+    form.val('login-form', {
+      "type": type
+    })
+      
+    document.getElementById(focus).focus();
   });
  
   </script>

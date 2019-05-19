@@ -1,9 +1,14 @@
 package com.cfjst.piggy.shiro;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.mgt.DefaultSecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +37,8 @@ public class  ShiroConfig {
     // DefaultWebSecurityManagerDefaultWebSecurityManager
     // DefaultWebSecurityManagerDefaultWebSecurityManager
     // DefaultWebSecurityManagerDefaultWebSecurityManager
+  
+    
     @Bean
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -50,29 +57,53 @@ public class  ShiroConfig {
 
          Map<String,String> filterMap = new LinkedHashMap<String,String>();
          
-         filterMap.put("/student/**", "authc");
-         filterMap.put("/**", "anon"); 
+        filterMap.put("/student/**", "authc");
+        filterMap.put("/**", "anon"); 
 
         //  filterMap.put("/user/del", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
-        shiroFilterFactoryBean.setLoginUrl("/logi2n");
-        
+        shiroFilterFactoryBean.setLoginUrl("/login");
         return shiroFilterFactoryBean;
     }
-	
+    
+    
+
 
     @Bean
-    public UserRealm getRealm(){
+    public ModularRealmAuthenticator modularRealmAuthenticator(){
+        //自己重写的ModularRealmAuthenticator
+        //网上复制的
+        UserModularRealmAuthenticator modularRealmAuthenticator = new UserModularRealmAuthenticator();
+        modularRealmAuthenticator.setAuthenticationStrategy(new AtLeastOneSuccessfulStrategy());
+        return modularRealmAuthenticator;
+    }
+
+
+    @Bean
+    public TeacherRealm getTeacherRealm(){
         
-        return new UserRealm();
+        return new TeacherRealm();
+    }
+
+    @Bean
+    public StudentRealm getStudentRealm(){
+        
+        return new StudentRealm();
     }
 
     @Bean   
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(UserRealm userRealm){
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setAuthenticator(modularRealmAuthenticator());
        
+       
+        List<Realm> realms = new ArrayList<>();
+        //添加多个Realm
+        realms.add(getStudentRealm());
+        realms.add(getTeacherRealm());
+
+        securityManager.setRealms(realms);;
         //配置Realm
-        securityManager.setRealm(userRealm);
         return securityManager;
     }
 
