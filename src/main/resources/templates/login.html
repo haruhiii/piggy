@@ -1,29 +1,28 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
 	<title>伪の成都信息工程大学课程过程化考核系统</title>
   <link rel="stylesheet" href="layui/css/layui.css">
   <link rel="stylesheet" href="css/login.css">  
-  <script src="layui/layui.js"></script>
-  <script src="js/js.js"></script>
+
 </head>
 
 <body>
 
   <div class=" layui-main login-content">
     <h1 class="login-title">伪の过程化考核系统</h1>
-    <form class="layui-form" action="/login" method="POST"> 
+    <form class="layui-form" action="/login"  method="POST"> 
       <div class="layui-form-item">
-          <input  type="text" name="id" placeholder="请输入学号或工号"  class="layui-input">
+          <input  type="text" lay-verify="idcheck" required name="id" th:value="${id}" placeholder="请输入学号或工号"  class="layui-input">
       </div>
       <div class="layui-form-item">
-            <input  type="password" name="password" placeholder="请输入密码"  class="layui-input">
+            <input  type="password" name="password" required placeholder="请输入密码"  class="layui-input">
       </div>
       <div class="layui-form-item">
           <label class="layui-form-label" >选择身份：</label>
-          <div class="layui-input-block">
+          <div class="layui-input-block" aria-checked="">
             <input type="radio" name="type" value="teacher" title="教师" >
             <input type="radio" name="type" value="student" title="学生" checked>
             <input type="radio" name="type" value="administer" title="管理员" >
@@ -39,5 +38,32 @@
   </div>
 
 </body>
+  <script src="layui/layui.js"></script>
+  
+  <script th:inline="javascript">
+    
+      
+  layui.use(['layer', 'form'], function(){
+    var layer = layui.layer
+    ,form = layui.form;
+    var msg = [[ ${msg} ]];
+    if (msg!=null)
+        layer.msg(msg);
+  });
 
+  form.verify({
+    idcheck: function(value, item){ //value：表单的值、item：表单的DOM对象
+    if(!new RegExp("^\d{m,n}$").test(value)){
+      return '请输入正确的用户名';
+      }
+    }
+    
+    //我们既支持上述函数式的方式，也支持下述数组的形式
+    //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+    ,pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ] 
+  });      
+  </script>
 </html>

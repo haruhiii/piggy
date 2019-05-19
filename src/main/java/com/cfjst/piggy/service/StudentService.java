@@ -5,7 +5,9 @@ import com.cfjst.piggy.dao.StudentDao;
 import com.cfjst.piggy.util.SqlUtil;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StudentService {
 
     SqlSession sqlSession;
@@ -31,5 +33,9 @@ public class StudentService {
         }
         return null;
         
+    }
+    public Student getById(Long id){
+        
+        return dao.findById(id);
     }
 }

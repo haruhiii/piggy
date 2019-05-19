@@ -1,5 +1,7 @@
 package com.cfjst.piggy.controller;
 
+import java.util.Map;
+
 import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.bean.Teacher;
 import com.cfjst.piggy.service.StudentService;
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     @PostMapping("/login")
-    public String login(@RequestParam("id") Long id,
+    public String login(Map<String,Object> map,
+                        @RequestParam("id") Long id,
                         @RequestParam("password") String password,
                         @RequestParam("type") String type)  {
 
@@ -51,6 +54,9 @@ public class LoginController {
         }                    
 
         // 登录失败
+        map.put("msg", "登录失败，请重新登录");
+        map.put("id", id);
+        map.put("type", type);
         return "login";
     }
     
