@@ -40,11 +40,15 @@ public class LoginController {
                         @RequestParam("id") Long id,
                         @RequestParam("password") String password,
                         @RequestParam("type") String type,
+                        Boolean rememberMe,
                         RedirectAttributes redirectAttributes,
                         Map<String,Object> map)  {
 
-        
         RedirectView redirectTarget = new RedirectView();
+        if(rememberMe==null){
+            rememberMe=false;
+        }
+        System.out.println(rememberMe);
         redirectTarget.setContextRelative(true);
 
 
@@ -52,8 +56,7 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
 
         UserToken token = new UserToken(id,password,type);
-        
-
+        token.setRememberMe(rememberMe);
         try {
             //跳转至 shiro 认证操作
             subject.login(token);
@@ -61,9 +64,9 @@ public class LoginController {
 
                 Student student =  (Student)subject.getPrincipal();
               //  List<Course> courses = student.getCourses();
-                redirectAttributes.addFlashAttribute("student",student);
+                // redirectAttributes.addFlashAttribute("student",student);
                 
-
+                
                 // CourseService service = new CourseService();
                 // List<Course> courses = service.findByStudentId(id);
                 // redirectAttributes.addFlashAttribute("course", courses);

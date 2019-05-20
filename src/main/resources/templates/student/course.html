@@ -2,7 +2,7 @@
 <html>
     <head>
                 
-        <link rel="stylesheet" href="./layui/css/layui.css">
+        <link rel="stylesheet" href="../layui/css/layui.css">
     </head>
 
     <body>
@@ -91,41 +91,15 @@
                 </tr> 
             </thead>
             <tbody>
-                <tr>
-                <td>2016级数值分析上机实验四(最小二乘曲线拟合)</td>
-                <td>平时作业</td>
-                <td>2016-11-29</td>
-                <td>80</td>
-                <td>查看</td>
+
+                <tr  th:each="task : ${tasks}">
+                    <td th:text="${task.smallTaskName}">smallTaskName</td>
+                    <td th:text="${task.bigTaskName}">bigTaskName</td>
+                    <td th:text="${task.deadline}">deadline</td>
+                    <td th:text="${task.score}">80</td>
+                    <td t>查看</td>
                 </tr>
-                <tr>
-                <td>2016级数值分析上机实验二(解线性方程组)	</td>
-                <td>平时作业</td>
-                <td>2016-11-28</td>
-                <td>93</td>
-                <td>查看</td>
-                </tr>
-                <tr>    
-                <td>2016级数值分析上机实验二(解线性方程组)	</td>
-                <td>平时作业</td>
-                <td>2016-11-28</td>
-                <td>93</td>
-                <td>查看</td>
-                </tr>
-                <tr>    
-                <td>2016级数值分析上机实验二(解线性方程组)	</td>
-                <td>平时作业</td>
-                <td>2016-11-28</td>
-                <td>93</td>
-                <td>查看</td>
-                </tr>
-                <tr>    
-                <td>第一次考勤</td>
-                <td>考勤</td>
-                <td>2016-11-28</td>
-                <td>0</td>
-                <td>查看</td>
-                </tr>
+               
                                                                                    
             </tbody>
             </table>
@@ -135,7 +109,7 @@
 
 
     
-    <script src="./layui/layui.js"></script>
+    <script src="../layui/layui.js"></script>
     <script>
         layui.use('element', function(){
           

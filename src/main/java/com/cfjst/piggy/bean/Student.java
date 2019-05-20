@@ -1,5 +1,6 @@
 package com.cfjst.piggy.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.cfjst.piggy.service.CourseService;
@@ -11,8 +12,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Student {
+public class Student implements Serializable{
 
+	private static final long serialVersionUID = -6186110806485044555L;
 	/**
 	 * 这里需要一丢丢注释
 	 * 

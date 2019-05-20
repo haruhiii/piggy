@@ -22,18 +22,21 @@
           layer.msg(elem.text());
         });
 
-        
+      var courses = document.getElementsByName("course"); 
 
-        $('.course').on('click', function(){
-        layer.open({
+      for (var i=0;i <courses.length;i++){
+        id =courses[i].getAttribute("id");
+        courses[i].onclick = function(){
+          layer.open({
           type: 2,
           title: '数值分析',
           maxmin: true,
           area: ['880px', '800px'],
-          content: './course',
-        });
-      });
-
+          content: "/student/course?courseId="+id,
+          });
+        }
+      }
+        
       $('.id').on('click', function(){
         layer.open({
           type: 2,
@@ -137,7 +140,7 @@
             <!-- 当前课程 -->
            <div class="layui-tab-item layui-show" >
               <div th:each="course : ${student.courses}">  
-                  <div class="layui-card course " >  
+                  <div class="layui-card course " name="course" th:id="${course.id}" >  
                       <div class="layui-card-header course-status" >课程正常</div>
                       <div class="layui-card-body">
                         <div class="course-name" th:text="${course.name}">概率论与数理统计</div>
