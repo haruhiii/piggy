@@ -4,10 +4,8 @@ import java.util.List;
 
 import com.cfjst.piggy.bean.Clazz;
 import com.cfjst.piggy.bean.Course;
-import com.cfjst.piggy.bean.Student;
+import com.cfjst.piggy.bean.Task;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -45,5 +43,18 @@ public interface TaskDao {
     @Select("select * from clazz where id = #{id}")
 	public Clazz findByClazzId(Integer id);
 
+    @Select("SELECT small_task.name AS sn ,big_task.name AS bn ,small_task.deadline,score.score FROM sbff.small_task,sbff.big_task,sbff.score where score.id_course=#{courseId} and score.id_student=#{student_id} and score.id_small_task=small_task.id and score.id_big_task=big_task.id")
+    @Results({
+        @Result(property = "smallTaskName",column = "sn"),
+        @Result(property = "bigTaskName",column = "bn"),
+        @Result(property = "deadline",column = "deadline"),
+        @Result(property = "score",column = "score")
+    })
+    public List<Task> findSmallTaskByCASId(Integer courseId,Long student_id);
 
+	// private String smallTaskName;
+	// private String bigTaskName;
+	// private Date deadline;
+	// private String status;
+	// private Integer score;
 }

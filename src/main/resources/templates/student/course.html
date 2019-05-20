@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+                
+        <link rel="stylesheet" href="../layui/css/layui.css">
+    </head>
+
+    <body>
+        <div class="course-score">
+            考核总评
+            <div class="layui-progress layui-progress-big " lay-showPercent="yes">
+                <div class="layui-progress-bar layui-bg-orange" lay-percent="66%">
+                </div>
+            </div>   
+            <div class="">考勤</div>
+            <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                <div class="layui-progress-bar layui-bg-red	" lay-percent="50%"></div>
+            </div>
+            平时作业
+            <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                <div class="layui-progress-bar" lay-percent="90%"></div>
+            </div>
+            实验
+            <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                <div class="layui-progress-bar layui-bg-orange" lay-percent="60%"></div>
+            </div>
+        </div>
+    
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>待处理</legend>
+        </fieldset>    
+        <table class="layui-table" lay-filter="demo">
+            <!-- <colgroup>
+            <col width="500">
+            <col width="200">
+            <col>
+        </colgroup> -->
+        <thead>
+            <tr>
+            <th lay-data="{field:'username', width:350}">标题</th>
+            <th lay-data="{field:'type', width:150, sort:true}">分类</th>
+            <th lay-data="{field:'experience', width:150, sort:true}">截止时间</th>  
+            <th lay-data="{field:'status', width:100}">状态</th>          
+            <th lay-data="{field:'sign'}">操作</th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr>
+            <td>2016级数值分析上机实验四(最小二乘曲线拟合)</td>
+            <td>平时作业</td>
+            <td>2016-11-29</td>
+            <td>已提交</td>
+            <td>修改</td>
+            </tr>
+            <tr>
+            <td>2016级数值分析上机实验二(解线性方程组)	</td>
+            <td>平时作业</td>
+            <td>2016-11-28</td>
+            <td>待处理</td>
+            <td>提交</td>
+            </tr>
+            <tr>
+            <td>第一次考勤</td>
+            <td>考勤</td>
+            <td>2016-11-28</td>
+            <td>旷课</td>
+            <td>处理</td>
+            </tr>
+        </tbody>
+        </table>
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>已结束</legend>
+        </fieldset>    
+
+        <table class="layui-table" lay-filter="demo">
+            <!-- <colgroup>
+            <col width="500">
+            <col width="200">
+            <col>
+            </colgroup> -->
+            <thead>
+                <tr>
+                <th lay-data="{field:'username', width:350}">标题</th>
+                <th lay-data="{field:'type', width:150, sort:true}">分类</th>
+                <th lay-data="{field:'experience', width:200, sort:true}">截止时间</th>
+                <th lay-data="{field:'score', width:100}">分数</th>
+                <th lay-data="{field:'sign'}">操作</th>
+
+                </tr> 
+            </thead>
+            <tbody>
+
+                <tr  th:each="task : ${tasks}">
+                    <td th:text="${task.smallTaskName}">smallTaskName</td>
+                    <td th:text="${task.bigTaskName}">bigTaskName</td>
+                    <td th:text="${task.deadline}">deadline</td>
+                    <td th:text="${task.score}">80</td>
+                    <td t>查看</td>
+                </tr>
+               
+                                                                                   
+            </tbody>
+            </table>
+    
+
+    </body>
+
+
+    
+    <script src="../layui/layui.js"></script>
+    <script>
+        layui.use('element', function(){
+          
+          
+        
+        });
+        layui.use('table', function(){
+        var table = layui.table;
+            //转换静态表格
+            table.init('demo', {
+            // height: 315 //设置高度
+            limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+            //支持所有基础参数
+            }); 
+        }); 
+
+        </script>
+</html>

@@ -1,0 +1,70 @@
+
+.login-content{
+    width: 360px;
+    margin: auto;
+    margin-top: 10%;
+
+}
+
+.login-btn{
+    width: 360px;
+}
+.login-footer{
+
+    text-align:center;
+    margin-top: 70%;
+}
+.login-title{
+    margin: 50px;
+}
+.info-title{
+    font-size: 16px;
+    padding: 20px;
+    color:white;
+}
+
+.aa{
+    height: 1000px;
+    width: 200px;
+    float: left;
+    background: #009688;
+}
+.nav{
+    background: #009688;
+    width: 200px;
+    min-height: 800px;
+    float: left;
+}
+.student{
+    width: 1000px;
+    margin: auto;
+    height: 1000px;
+}
+.news{
+    height: 240px;
+    float: left;
+    width: 800px;
+}
+.news span{
+    float: right;
+}
+.news-content{
+    margin-left: 40px;
+}
+.course{
+    float: left;
+    width: 220px;
+    margin: 20px;
+    background-color: #f3faf8;
+}
+.course-holder{
+    width: 800px;
+    float: left;
+    min-height: 800px;
+}
+.footer{
+    margin: auto;
+    width: 1000px;
+    height: 100px;
+    background: #009688;
+}

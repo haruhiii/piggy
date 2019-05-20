@@ -5,7 +5,8 @@ import com.cfjst.piggy.dao.TeacherDao;
 import com.cfjst.piggy.util.SqlUtil;
 
 import org.apache.ibatis.session.SqlSession;
-
+import org.springframework.stereotype.Service;
+@Service
 public class TeacherService {
 
     SqlSession sqlSession;
@@ -21,14 +22,19 @@ public class TeacherService {
      * @param student 教师信息，至少包含Id和密码
      * @return 是否登陆成功
      */
-    boolean login(Teacher teacher){
-        Teacher tea = dao.findById(teacher.getId());
+    public Teacher login(Long id, String password){
+        Teacher tea = dao.findById(id);
         if(null!=tea){
-            if(tea.getPassword().equals(teacher.getPassword())){
-                return true;
+            if(tea.getPassword().equals(password)){
+                return tea;
             }
         }
-        return false;
+        return null;
         
+    }
+    
+    public Teacher getById(Long id){
+        
+        return dao.findById(id);
     }
 }

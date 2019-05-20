@@ -1,11 +1,12 @@
 .login-content{
-    width: 360px;
+    width: 380px;
     margin: auto;
     margin-top: 10%;
 }
 
 .login-btn{
-    width: 360px;
+    width: 260px;
+    align-self: auto;
 }
 
 .login-footer{
@@ -21,4 +22,8 @@
     font-size: 16px;
     padding: 20px;
     color:white;
+}
+.remember-me{
+    margin: 109px;
+    float: right;
 }

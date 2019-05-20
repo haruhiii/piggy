@@ -16,11 +16,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
- * 班级数据库接口测试
+ * 课程数据库接口测试
  */
 
 @RunWith(SpringRunner.class)
+
 @SpringBootTest
+
 public class CourseDaoTests {
     SqlSession sqlSession;
     CourseDao dao;
