@@ -1,15 +1,12 @@
 package com.cfjst.piggy.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.cfjst.piggy.bean.BigTask;
-import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.service.BigTaskService;
-import com.cfjst.piggy.service.CourseService;
 import com.cfjst.piggy.service.SmallTaskService;
 import com.cfjst.piggy.service.StudentService;
 
@@ -18,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * 通用请求

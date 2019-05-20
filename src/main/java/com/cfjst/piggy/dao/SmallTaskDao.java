@@ -8,12 +8,14 @@ import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.SmallTask;
 
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.mapping.FetchType;
 
 
+@Mapper
 public interface SmallTaskDao {
 
 

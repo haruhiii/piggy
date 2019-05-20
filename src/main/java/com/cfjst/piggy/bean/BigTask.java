@@ -1,6 +1,5 @@
 package com.cfjst.piggy.bean;
 
-import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;

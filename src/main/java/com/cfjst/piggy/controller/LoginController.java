@@ -1,26 +1,15 @@
 package com.cfjst.piggy.controller;
 
-import java.util.List;
 import java.util.Map;
 
-import javax.security.auth.login.AccountNotFoundException;
-
-import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.Student;
-import com.cfjst.piggy.bean.Teacher;
-import com.cfjst.piggy.service.CourseService;
-import com.cfjst.piggy.service.StudentService;
-import com.cfjst.piggy.service.TeacherService;
 import com.cfjst.piggy.shiro.UserToken;
 
-import org.apache.catalina.User;
-import org.apache.catalina.security.SecurityUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -62,7 +51,7 @@ public class LoginController {
             subject.login(token);
             if(token.getType().equals("Student")){
 
-                Student student =  (Student)subject.getPrincipal();
+                // Student student =  (Student)subject.getPrincipal();
               //  List<Course> courses = student.getCourses();
                 // redirectAttributes.addFlashAttribute("student",student);
                 

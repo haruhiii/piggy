@@ -1,13 +1,9 @@
 package com.cfjst.piggy.service;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import com.cfjst.piggy.bean.BigTask;
-import com.cfjst.piggy.bean.Course;
-import com.cfjst.piggy.bean.Student;
-import com.cfjst.piggy.bean.SmallTask;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -4,12 +4,14 @@ import com.cfjst.piggy.bean.Student;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
  * 此处需注释
  */
+@Mapper
 public interface StudentDao {
 
     /**

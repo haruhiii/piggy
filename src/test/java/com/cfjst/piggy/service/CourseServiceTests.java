@@ -1,6 +1,5 @@
 package com.cfjst.piggy.service;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
