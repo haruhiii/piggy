@@ -16,6 +16,8 @@ public class Course {
 
 	private Integer id;
 	private String name;
+
+	// TODO 存疑
 	private Long clazzId;
 	
 
