@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TaskServiceTests {
+public class SmallTaskServiceTests {
     
 
     /**
@@ -30,25 +30,10 @@ public class TaskServiceTests {
     public void findByStudentIdTest() {
        
 		//  List<Course> courses = student.getCourses();
-		TaskService service = new TaskService();
+		SmallTaskService service = new SmallTaskService();
         List<SmallTask> tasks = service.getSmallTaskByCASId(  Integer.valueOf(1), Long.valueOf(2016051094));
         for(SmallTask task:tasks){
             System.out.println(task.getSmallTaskName());
-
-        }
-    }
-
-    /**
-     * 根据学号和课程找大作业测试
-     */
-    @Test
-
-    public void findBigTaskByCASId() {
-        TaskService service = new TaskService();
-
-        List<BigTask> tasks =   service.getBigTaskByCASId( Integer.valueOf(1), Long.valueOf(2016051094));
-        for(BigTask task:tasks){
-            System.out.println(task.getName());
 
         }
     }

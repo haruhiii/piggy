@@ -8,9 +8,10 @@ import com.cfjst.piggy.bean.BigTask;
 import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.Student;
+import com.cfjst.piggy.service.BigTaskService;
 import com.cfjst.piggy.service.CourseService;
+import com.cfjst.piggy.service.SmallTaskService;
 import com.cfjst.piggy.service.StudentService;
-import com.cfjst.piggy.service.TaskService;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
@@ -75,11 +76,9 @@ public class IndexController {
 
 		Student student = (Student) SecurityUtils.getSubject().getPrincipal();
 		// List<Course> courses = student.getCourses();
-		TaskService service = new TaskService();
-		System.out.println(courseId);
 		//   还没改 已改
-		List<SmallTask> tasks = service.getSmallTaskByCASId(courseId, student.getId());
-		List<BigTask> bigTasks =   service.getBigTaskByCASId(courseId, student.getId());
+		List<SmallTask> tasks = new SmallTaskService().getSmallTaskByCASId(courseId, student.getId());
+		List<BigTask> bigTasks =  new BigTaskService().getBigTaskByCASId(courseId, student.getId());
 
 		map.put("tasks",tasks);
 		map.put("bigTasks",bigTasks);

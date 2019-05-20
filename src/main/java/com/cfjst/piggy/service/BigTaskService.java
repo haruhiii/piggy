@@ -8,28 +8,24 @@ import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.Teacher;
 import com.cfjst.piggy.dao.CourseDao;
-import com.cfjst.piggy.dao.TaskDao;
+import com.cfjst.piggy.dao.BigTaskDao;
 import com.cfjst.piggy.dao.TeacherDao;
 import com.cfjst.piggy.util.SqlUtil;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 @Service
-public class TaskService {
+public class BigTaskService {
 
     SqlSession sqlSession;
-    TaskDao dao;
+    BigTaskDao dao;
 
-    public TaskService() {
+    public BigTaskService() {
         sqlSession = new SqlUtil().openSession();
-        dao = sqlSession.getMapper(TaskDao.class);
+        dao = sqlSession.getMapper(BigTaskDao.class);
     }
 
-    public  List<SmallTask>  getSmallTaskByCASId( Integer courseId,Long studentId){
-        //通过学生Id和课程id获取小项
-        List<SmallTask> tasks = dao.findSmallTaskByCASId(courseId,studentId);
-        return tasks;
-    }
+
 
     public List<BigTask> getBigTaskByCASId(Integer courseId,Long studentId){
         //通过学生Id和课程id获取大项
