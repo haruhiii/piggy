@@ -2,8 +2,10 @@ package com.cfjst.piggy.service;
 
 import java.util.List;
 
+import com.cfjst.piggy.bean.BigTask;
 import com.cfjst.piggy.bean.Course;
-import com.cfjst.piggy.bean.Task;
+import com.cfjst.piggy.bean.SmallTask;
+import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.Teacher;
 import com.cfjst.piggy.dao.CourseDao;
 import com.cfjst.piggy.dao.TaskDao;
@@ -23,9 +25,18 @@ public class TaskService {
         dao = sqlSession.getMapper(TaskDao.class);
     }
 
-    public  List<Task>  getSmallTaskByCASId( Integer courseId,Long student_id){
-        //通过学生Id获取课程信息
-        List<Task> tasks = dao.findSmallTaskByCASId(courseId,student_id);
+    public  List<SmallTask>  getSmallTaskByCASId( Integer courseId,Long studentId){
+        //通过学生Id和课程id获取小项
+        List<SmallTask> tasks = dao.findSmallTaskByCASId(courseId,studentId);
         return tasks;
     }
+
+    public List<BigTask> getBigTaskByCASId(Integer courseId,Long studentId){
+        //通过学生Id和课程id获取大项
+
+        List<BigTask> tasks = dao.findBigTaskByCASId(courseId,studentId);
+        return tasks;
+    }
+
+
 }

@@ -4,9 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import com.cfjst.piggy.bean.BigTask;
 import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.Student;
-import com.cfjst.piggy.bean.Task;
+import com.cfjst.piggy.bean.SmallTask;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,18 +24,35 @@ public class TaskServiceTests {
     
 
     /**
-     * 根据学号和课程找作业
+     * 根据学号和课程找小作业测试
      */
     @Test
     public void findByStudentIdTest() {
        
 		//  List<Course> courses = student.getCourses();
 		TaskService service = new TaskService();
-        List<Task> tasks = service.getSmallTaskByCASId(  Integer.valueOf(1), Long.valueOf(2016051094));
-        for(Task task:tasks){
+        List<SmallTask> tasks = service.getSmallTaskByCASId(  Integer.valueOf(1), Long.valueOf(2016051094));
+        for(SmallTask task:tasks){
             System.out.println(task.getSmallTaskName());
 
         }
     }
+
+    /**
+     * 根据学号和课程找大作业测试
+     */
+    @Test
+
+    public void findBigTaskByCASId() {
+        TaskService service = new TaskService();
+
+        List<BigTask> tasks =   service.getBigTaskByCASId( Integer.valueOf(1), Long.valueOf(2016051094));
+        for(BigTask task:tasks){
+            System.out.println(task.getName());
+
+        }
+    }
+
+
     
 }

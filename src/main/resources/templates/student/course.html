@@ -6,13 +6,14 @@
     </head>
 
     <body>
-        <div class="course-score">
-            考核总评
+        <div class="course-score" th:each="bigTask : ${bigTasks}">
+
+            <div th:text="${bigTask.name}">name</div>
             <div class="layui-progress layui-progress-big " lay-showPercent="yes">
                 <div class="layui-progress-bar layui-bg-orange" lay-percent="66%">
                 </div>
             </div>   
-            <div class="">考勤</div>
+            <!-- 考勤
             <div class="layui-progress layui-progress-big" lay-showPercent="yes">
                 <div class="layui-progress-bar layui-bg-red	" lay-percent="50%"></div>
             </div>
@@ -23,7 +24,7 @@
             实验
             <div class="layui-progress layui-progress-big" lay-showPercent="yes">
                 <div class="layui-progress-bar layui-bg-orange" lay-percent="60%"></div>
-            </div>
+            </div> -->
         </div>
     
 

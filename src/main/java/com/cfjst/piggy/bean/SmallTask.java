@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
-public class Task  {
+public class SmallTask {
 
 	private String smallTaskName;
 	private String bigTaskName;
