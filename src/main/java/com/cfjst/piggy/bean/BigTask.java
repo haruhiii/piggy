@@ -1,5 +1,6 @@
 package com.cfjst.piggy.bean;
 
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,8 @@ public class BigTask {
 
 	private String name;
 	private Float rate;
-    
+	private Integer id;
+	//完成百分比
+    private Integer percent;
 
 }

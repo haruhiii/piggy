@@ -2,16 +2,26 @@
 <html>
     <head>
                 
-        <link rel="stylesheet" href="../layui/css/layui.css">
+        <link rel="stylesheet" href="../layui/css/layui.css">  
+        <script src="../js/jquery-1.11.3.min.js"></script>
+        <script src="/js/jquery.lineProgressbar.js" type="text/javascript"></script>
+        <!--必要样式-->
+        <link rel="stylesheet" href="/css/jquery.lineProgressbar.css">
     </head>
 
     <body>
         <div class="course-score" th:each="bigTask : ${bigTasks}">
 
-            <div th:text="${bigTask.name}">name</div>
-            <div class="layui-progress layui-progress-big " lay-showPercent="yes">
-                <div class="layui-progress-bar layui-bg-orange" lay-percent="66%">
+        <div class="htmleaf-content">
+                <h3 class="center" th:text="${bigTask.name}">name</h3>
+                <div th:id="${bigTask.percent}">
+                    <div class="progressbar" >
+                    <div class="proggress">
+                    </div>
+                    </div>
                 </div>
+            </div>
+            
             </div>   
             <!-- 考勤
             <div class="layui-progress layui-progress-big" lay-showPercent="yes">
@@ -31,7 +41,7 @@
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
             <legend>待处理</legend>
         </fieldset>    
-        <table class="layui-table" lay-filter="demo">
+        <table class="layui-table">
             <!-- <colgroup>
             <col width="500">
             <col width="200">
@@ -75,7 +85,7 @@
             <legend>已结束</legend>
         </fieldset>    
 
-        <table class="layui-table" lay-filter="demo">
+        <table class="layui-table">
             <!-- <colgroup>
             <col width="500">
             <col width="200">
@@ -111,12 +121,40 @@
 
     
     <script src="../layui/layui.js"></script>
-    <script>
-        layui.use('element', function(){
-          
-          
-        
-        });
+    <script th:inline="javascript">
+
+
+        $(function(){
+            var bigTasks = [[${percents}]];
+            for(var i =0;i< bigTasks.length;i++){
+                if(bigTasks[i]<60){
+                $('#'+bigTasks[i]).LineProgressbar({
+                percentage: bigTasks[i],
+                fillBackgroundColor: "#f33",
+                height: '15px',
+                radius: '15px'
+                 });
+                }else if(bigTasks[i]<80){
+                    $('#'+bigTasks[i]).LineProgressbar({
+                    percentage: bigTasks[i],
+                    fillBackgroundColor: '#f1c40f',
+                    height: '15px',
+                    radius: '15px'
+                    });
+                }else {
+                    $('#'+bigTasks[i]).LineProgressbar({
+                    percentage: bigTasks[i],
+                    fillBackgroundColor: '#2fe',
+                    height: '15px',
+                    radius: '15px'
+                    });
+                }
+             }
+        })
+            layui.use('element', function(){
+            var element = layui.element;
+           
+            });
         layui.use('table', function(){
         var table = layui.table;
             //转换静态表格

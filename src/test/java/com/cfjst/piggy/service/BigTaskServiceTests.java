@@ -20,6 +20,23 @@ public class BigTaskServiceTests {
     
 
    
+    /**c
+     * 获取各个小项的得分百分比测试
+     * @param studentId
+     * @param courseId
+     * @return
+     */
+    @Test
+    public void getSmallTaskPercentBySSId(){
+        
+        Long id = 2016051094L;
+        Integer courseId = 2;
+        BigTaskService service = new BigTaskService();
+        List<Integer> persents = service.getBigTaskPercentBySSId(id, courseId,service.getBigTaskByCASId(courseId, id));
+        for(Integer percent:persents){
+            System.out.println(percent);
+        }
+    }
 
     /**
      * 根据学号和课程找大作业测试

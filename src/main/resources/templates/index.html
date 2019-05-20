@@ -8,156 +8,22 @@
 	<title>伪の成都信息工程大学课程过程化考核系统</title>
   <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
   <link rel="stylesheet" href="../css/style.css"  media="all">
-  <script src="../js/jquery-1.11.3.min.js"></script>
+
+  
   <script src="../layer/layer.js"></script>
   <script src="../layui/layui.js"></script>
   
-<script>
-    layui.use('element', function(){
-      var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-        
-        //监听导航点击
-        element.on('nav(demo)', function(elem){
-          //console.log(elem)
-          layer.msg(elem.text());
-        });
 
-        
-
-        $('#course').on('click', function(){
-        layer.open({
-          type: 2,
-          title: '数值分析',
-          maxmin: true,
-          area: ['880px', '800px'],
-          content: './course',
-        });
-      });
-
-      $('.id').on('click', function(){
-        layer.open({
-          type: 2,
-          title: '数值分析',
-          maxmin: true,
-          area: ['880px', '800px'],
-          content: './course',
-
-        });
-      });
-      $('#news').on('click', function(){
-        layer.open({
-              type: 1
-              ,title: false //不显示标题栏
-              ,area: '500px;'
-              ,shade: 0.3
-              ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-              ,btn: ['知道了']
-              ,btnAlign: 'c'
-              ,moveType: 1 //拖拽模式，0或者1
-              ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">各位老师、同学：<br>1、学生用户没有修改初始密码的（初始密码就是学号），密码已经变更为本人身份证前6位+后6位；已经修改初始密码的学生用户，密码不变.<br>2、教师用户没有修改初始密码的（初始密码就是用户名），账号直接停用。需要重新开通的，请咨询，并且登录后需要修改初始密码，否则以后还会暂停使用教学平台.<br>3、2018年入职教师   初始密码=用户名+666，用户名请访问系统查询<br>2018级新生  初始密码=姓名拼音首字母大写+身份证后6位+a<br>发送邮件sdtz@cuit.edu.cn（姓名、学号、学院）<br></div>'
-              });
-          });
-
-
-
-
-      });
-      
-  </script>
 </head>
 
 <body>
 
-    <div class="student">
-
-        <!-- 侧边导航 -->
-        <div class="nav">
-            <div class="info-list">
-              <h1 class="info-title" th:text="${student.name}">黑富福</h1>
-                <ul class="layui-nav layui-nav-tree layui-bg-green" lay-filter="test">
-                  <li class="layui-nav-item layui-nav-itemed ">
-                    <a href="javascript:;">课程通知</a>
-                    <dl class="layui-nav-child">
-                      <dd><a class="id" href="javascript:;">旷课通知</a></dd>
-                      <dd><a class="id" href="javascript:;">作业通知</a></dd>
-                      <dd><a class="id" href="javascript:;">旷课通知</a></dd>
-                      <dd><a class="id" href="javascript:;">旷课通知</a></dd>
-                    </dl>
-                  </li>
-                  <li class="layui-nav-item">
-                    <a href="javascript:;">管理</a>
-                    <dl class="layui-nav-child">
-                      <dd><a href="">个人信息</a></dd>
-                    </dl>
-                  </li>
-                </ul>
-          </div>    
-          </div>
-
-      <!-- 网站公告 -->
-      <div class="news">
-          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>网站公告</legend>
-          </fieldset>
-          <p class="news-content">
-              <a href="javascript:;">打开PPT时显示“已阻止了对外部图片的引用”的解决办法</a> 
-            <span>2019-04-21</span>
-          </p>
-          <hr>
-          <p class="news-content">
-            <a href="javascript:;" id="news" >最近部分教师学生密码有变，登录不了教学平台请咨询</a> 
-            <span>2019-02-31</span>
-          </p>
-          <hr>
-          <p class="news-content">
-            <a href="">网络教学综合平台_学生手册（pdf</a> 
-            <span>2019-02-31</span>
-          </p>
-          <hr>
-          <p class="news-content">
-            <a href="">主讲教师与助教如何协助完好平台教学任务.doc</a> 
-            <span>2019-02-31</span>
-          </p>
-            <hr>
-          <p class="news-content"> 
-            <span><a href="">更多内容 >></a></span>
-          </p>
-        </div>
-
-
-
-    <!-- 课程信息-->
-    <div class="layui-tab layui-tab-brief course-holder" lay-filter="docDemoTabBrief" >
-        <ul class="layui-tab-title">
-          <li class="layui-this">当前课程</li>
-          <li>已修课程</li>
-        </ul>
-
-        <div class="layui-tab-content">
-            <!-- 当前课程 -->
-           <div class="layui-tab-item layui-show" >
-              <div th:each="course : ${student.courses}">  
-                  <div class="layui-card course " >  
-                      <div class="layui-card-header course-status" >课程正常</div>
-                      <div class="layui-card-body">
-                        <div class="course-name" th:text="${course.name}">概率论与数理统计</div>
-                        <div class="course-result">不合格</div>
-                      </div>
-                    </div>   
-                  </div>
-           </div>
-          <!-- 已修课程 -->
-           <div class="layui-tab-item">
-           13123
-           </div>
-       </div>
-</div>
-
-
-</div>
-
-
-
+    <div class="htmleaf-content">
+           <h3 class="center">控制进度条的圆角</h3>
+        <div id="progressbar4"><div class="progressbar" style="width: 100%; background-color: rgb(238, 238, 238); border-radius: 50px;"><div class="proggress" style="background-color: rgb(241, 196, 15); height: 65px; border-radius: 50px; width: 78%;"></div><div class="percentCount">78%</div></div></div>
+      </div>
+      
+      
 
 
 

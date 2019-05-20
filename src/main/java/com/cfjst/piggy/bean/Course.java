@@ -1,5 +1,7 @@
 package com.cfjst.piggy.bean;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +21,7 @@ public class Course {
 
 	// TODO 存疑
 	private Long clazzId;
-	
+	private List<Integer> bigTaskPercent;
+
 
 }

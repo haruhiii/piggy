@@ -69,29 +69,6 @@ public interface SmallTaskDao {
     })
     public List<SmallTask> findSmallTaskByCASId(Integer courseId,Long studentId);
 
-    /**
-     * 
-    SELECT 
-        big_task.id,
-        big_task.name,
-        big_task.rate
-    FROM
-        sbff.big_task,
-        sbff.clazz,
-        sbff.student
-    WHERE
-        clazz.id = student.id_clazz
-        AND student.id = 2016051094
-        AND big_task.id_course = 1
-    * 获取各个大项的信息
-    * @param courseId
-    * @param student_id
-    * @return
-    */
-    @Select("    SELECT  big_task.id,big_task.name,big_task.rate FROM sbff.big_task,sbff.clazz,sbff.student WHERE clazz.id = student.id_clazz AND student.id = ${studentId} AND big_task.id_course = ${courseId}     ")
-    public List<BigTask> findBigTaskByCASId(Integer courseId,Long studentId);
-
-
 	// private String smallTaskName;
 	// private String bigTaskName;
 	// private Date deadline;

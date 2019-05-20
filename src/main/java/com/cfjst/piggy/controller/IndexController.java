@@ -1,5 +1,7 @@
 package com.cfjst.piggy.controller;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,18 +67,30 @@ public class IndexController {
 		return "student/index";
 	}
 
+	/**
+	 * 课程页面
+	 * @param courseId 需要查询的课程Id
+	 * @param map
+	 * @return
+	 */
 	@GetMapping("student/course")
 	public String course(@RequestParam("courseId") Integer courseId, Map<String, Object> map) {
-		System.out.println("-----------------" + courseId);
 
+
+		BigTaskService service = new BigTaskService();
+		
 		Student student = (Student) SecurityUtils.getSubject().getPrincipal();
 		// List<Course> courses = student.getCourses();
 		//   还没改 已改
-		List<SmallTask> tasks = new SmallTaskService().getSmallTaskByCASId(courseId, student.getId());
-		List<BigTask> bigTasks =  new BigTaskService().getBigTaskByCASId(courseId, student.getId());
 
+
+		List<SmallTask> tasks = new SmallTaskService().getSmallTaskByCASId(courseId, student.getId());
+		List<BigTask> bigTasks =  service.getBigTaskByCASId(courseId, student.getId());
+		List<Integer> percents = service.getBigTaskPercentBySSId(student.getId(), courseId,bigTasks);
+	 
 		map.put("tasks",tasks);
 		map.put("bigTasks",bigTasks);
+		map.put("percents",percents);
 
 		return "student/course";
 	}

@@ -15,9 +15,10 @@ public class SmallTask {
 
 	private String smallTaskName;
 	private String bigTaskName;
+	private Integer bigTaskId;
 	private Date deadline;
 	private String status;
-    private Integer score;
+    private Float score;
     
 
 

@@ -22,7 +22,21 @@ public interface BigTaskDao {
     @Select("select * from clazz where id = #{id}")
     public List<Course> findCourseByStudentId(Long id);
 
-
+    // SELECT 
+    //     score.score
+    // FROM
+    //     sbff.score
+    // WHERE
+    //     score.id_student=2016051094  AND
+    //     score.id_course=1\
+    
+    
+    @Select("SELECT score.score,score.id_big_task FROM sbff.score WHERE score.id_student=${studentId}  AND score.id_course=${courseId}")
+    @Results({
+        @Result(property = "score",column = "score"),
+        @Result(property = "bigTaskId",column = "id_big_task")
+    })
+    public List<SmallTask> getSmallTaskScoreBySSId(Long studentId,Integer courseId);
 
     /**
      * 获取班级的信息，包括课程信息
@@ -36,37 +50,6 @@ public interface BigTaskDao {
             many =  @Many(select = "com.cfjst.piggy.dao.CourseDao.findByClazzId",fetchType = FetchType.LAZY))
     })
     public Clazz findByClazzIdWithCourse(Integer id);
-    
-   /**
-    * 
-    SELECT 
-        small_task.name AS sn,
-        big_task.name AS bn,
-        small_task.deadline,
-        score.score
-    FROM
-        sbff.small_task,
-        sbff.big_task,
-        sbff.score
-    WHERE
-        score.id_course = 1
-        AND score.id_student = 2016051094
-        AND score.id_small_task = small_task.id
-        AND score.id_big_task = big_task.id
-        AND big_task.id = small_task.big_task_id
-    * 获取各个小项的信息
-    * @param courseId
-    * @param student_id
-    * @return
-    */
-    @Select("SELECT small_task.name AS sn,big_task.name AS bn,small_task.deadline,score.score FROM sbff.small_task,sbff.big_task,sbff.score WHERE score.id_course = #{courseId} AND score.id_student = #{studentId} AND score.id_small_task = small_task.id AND score.id_big_task = big_task.id AND big_task.id = small_task.big_task_id")
-    @Results({
-        @Result(property = "smallTaskName",column = "sn"),
-        @Result(property = "bigTaskName",column = "bn"),
-        @Result(property = "deadline",column = "deadline"),
-        @Result(property = "score",column = "score")
-    })
-    public List<SmallTask> findSmallTaskByCASId(Integer courseId,Long studentId);
 
     /**
      * 
@@ -90,6 +73,22 @@ public interface BigTaskDao {
     @Select("    SELECT  big_task.id,big_task.name,big_task.rate FROM sbff.big_task,sbff.clazz,sbff.student WHERE clazz.id = student.id_clazz AND student.id = ${studentId} AND big_task.id_course = ${courseId}     ")
     public List<BigTask> findBigTaskByCASId(Integer courseId,Long studentId);
 
+
+
+
+    /**
+         * SELECT 
+                avg(score)
+            FROM
+                sbff.score
+            WHERE
+                score.id_student = 2016051094 and
+                score.id_course = 1 and
+                score.id_big_task = 2
+     * 获取某一个大项的得分百分比
+     */
+    @Select("SELECT avg(score) FROM sbff.score WHERE score.id_student = ${studentId} and score.id_course = ${courseId} and score.id_big_task = ${bigTaskId}")
+    public Integer getBigTaskAvg(Integer courseId,Long studentId,Integer bigTaskId);
 
 	// private String smallTaskName;
 	// private String bigTaskName;
