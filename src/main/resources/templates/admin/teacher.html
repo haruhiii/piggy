@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>用户管理首页</title>
+  <link rel="stylesheet" href="/res/layui/css/layui.css">
+  <!--引入awesome图标库的样式表-->
+  <link rel="stylesheet" href="/res/font-awesome-4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="/res/css/global.css">
+</head>
+
+<body style="background: #FFF; background:white url(/res/images/beijng.jpg) no-repeat 50% 0px; background-size:100% 100% ">
+
+  <!---定义最外面的容器,container-->
+  <div class="layui-col-md12" style="padding: 0px; background: #FFF; ">
+
+    <!--以下包含导航栏页面-->
+    <ul class="layui-nav fly-nav-user" lay-filter="demo">
+      <img style="padding-left: 400px; " src="/res/images/cuitlog.jpg">
+
+    </ul>
+    <a style="float:right; margin-right:50px" href="/users/loginout">退出系统</a>
+    <hr/>
+  </div>
+  <br/>
+  <br/>
+
+
+
+  <div class="layui-container fly-marginTop fly-user-main" style="margin-top:85px; border-top:1px ">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+      <li class="layui-nav-item  layui-this">
+        <a href="/teacherAdmin/findAllTeacher" style="color:#626161;">
+          <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+          教师管理
+        </a>
+      </li>
+      <li class="layui-nav-item ">
+        <a href="/users/findAll" style="color:#626161;">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          学生管理
+        </a>
+      </li>
+      <li class="layui-nav-item">
+        <a href="/course/findAllCourse"  style="color:#626161;">
+          <i class="fa fa-book fa-lg" aria-hidden="true"></i>
+          课程管理
+        </a>
+      </li>
+    </ul>
+
+
+
+
+    <div class="fly-panel fly-panel-user" pad20 >
+      <div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_msg" style="margin-top: 15px;">
+        <!--以下是面包屑-->
+        <div class="layui-card-header">
+          <span class="layui-breadcrumb">
+            <a><cite>后台管理</cite></a>
+            <a id="currentType" href="#">教师管理</a>
+            <a id="currentBrand" href="#"></a>
+          </span>
+        </div>
+
+        <div id="LAY_minemsg" style="margin-top: 10px;">
+          <table class="layui-table" lay-size="sm">
+            <colgroup>
+              <col width="150">
+              <col width="200">
+              <col width="150">
+              <col width="150">
+              <col width="150">
+              <col width="240">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>工号</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="t:${teachers}">
+                <td th:text="${t.id}"> </td>
+                <td th:text="${t.name}"> </td>
+                <td th:text="${t.password}"> </td>
+                <td>
+                  <div class="layui-btn-group">
+                    <button class="layui-btn layui-btn-primary layui-btn-sm addTeacher"><i class="layui-icon">&#xe654;</i></button>
+                    <button th:title="${t.id}" class="layui-btn layui-btn-primary layui-btn-sm updateTeacher"><i class="layui-icon">&#xe642;</i></i></button>
+                    <button th:title="${t.id}" class="layui-btn layui-btn-primary layui-btn-sm deleteTeacher"><i class="layui-icon">&#xe640;</i></button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <!--分页组件-->
+          <div id="mypager"></div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/res/layui/layui.js"></script>
+  <script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'element', 'carousel', 'form', 'rate', 'laypage'], function () {
+      var layer = layui.layer,
+        form = layui.form;
+      var element = layui.element;
+      var carousel = layui.carousel;
+      var rate = layui.rate;
+      var laypage = layui.laypage;
+      var $ = layui.$;
+
+      //layer.msg('Hello World');
+
+      //监听导航点击
+      element.on('nav(demo)', function (elem) {
+        //console.log(elem)
+        layer.msg(elem.text());
+      });
+
+      //常规轮播
+      carousel.render({
+        elem: '#test10',
+        arrow: 'always',
+        interval: 3000,
+        anim: 'fade',
+        width: '100%',
+        height: '600px',
+        top: '-400px'
+      });
+
+
+      //半星效果
+      rate.render({
+        elem: '#test1',
+        value: 2.5 //初始值
+          ,
+        half: true //开启半星
+          ,
+        readonly: true
+      });
+
+      rate.render({
+        elem: '#test2',
+        value: 3.5 //初始值
+          ,
+        half: true //开启半星
+          ,
+        readonly: true
+      });
+
+      rate.render({
+        elem: '#test3',
+        value: 4.5 //初始值
+          ,
+        half: true //开启半星
+          ,
+        readonly: true
+      });
+
+      rate.render({
+        elem: '#test4',
+        value: 5 //初始值
+          ,
+        half: true //开启半星
+          ,
+        readonly: true
+      });
+
+      rate.render({
+        elem: '#test5',
+        value: 5 //初始值
+          ,
+        half: true //开启半星
+          ,
+        readonly: true
+      });
+
+      rate.render({
+        elem: '#test6',
+        value: 5 //初始值
+          ,
+        half: true //开启半星
+          ,
+        readonly: true
+      });
+
+      laypage.render({
+        elem: 'mypager',
+        count: 70 //数据总数
+          ,
+        jump: function (obj) {
+          console.log(obj)
+        }
+      });
+
+
+
+      $('.addTeacher').click(function () {
+
+        layer.open({
+          title: '添加用户信息',
+          type: 2,
+          area: ['860px', '600px'],
+          content: '/teacherAdmin/toAddTeacher'
+
+        });
+
+      })
+
+
+      $('.updateTeacher').click(function () {
+
+    	var id = $(this).prop("title");
+        layer.open({
+          title: '修改用户信息',
+          type: 2,
+          area: ['860px', '600px'],
+          content: '/users/toupdate?id='+id
+        });
+
+      });
+
+     
+
+      $('.deleteTeacher').click(function () {
+
+        
+    	  var id = $(this).attr('title'); //获得要删除的汽车的编号
+
+          //提示用户是否要真的删除。
+          layer.confirm('确认要删除吗?', {icon: 3, title: '提示'}, function (index) {
+              //do something
+
+              location.href="/users/delete?id="+id;
+
+              //layer.close(index);
+          });
+
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

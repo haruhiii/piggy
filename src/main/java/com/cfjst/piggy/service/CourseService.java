@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.dao.CourseDao;
+import com.cfjst.piggy.dao.CtcDao;
 import com.cfjst.piggy.util.SqlUtil;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,10 +14,12 @@ public class CourseService {
 
     SqlSession sqlSession;
     CourseDao dao;
+    CtcDao ctcDao;
 
     public CourseService(){
         sqlSession = new SqlUtil().openSession();
         dao = sqlSession.getMapper(CourseDao.class);
+        ctcDao = sqlSession.getMapper(CtcDao.class);
     }
     public List<Course>  findByStudentId( Long id){
         //通过学生Id获取课程信息

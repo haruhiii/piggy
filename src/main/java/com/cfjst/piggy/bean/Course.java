@@ -22,6 +22,9 @@ public class Course {
 	// TODO 存疑
 	private Long clazzId;
 	private List<Integer> bigTaskPercent;
+	
+
+	private Long teacherId;
 
 
 }

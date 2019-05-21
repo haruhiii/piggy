@@ -7,9 +7,12 @@ import java.util.Map;
 
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -55,15 +58,15 @@ public class  ShiroConfig {
 
          Map<String,String> filterMap = new LinkedHashMap<String,String>();
          
-        filterMap.put("/student/**", "authc");
+        filterMap.put("/student/**", "user");
         filterMap.put("/**", "anon"); 
 
         //  filterMap.put("/user/del", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         shiroFilterFactoryBean.setLoginUrl("/login");
+        
         return shiroFilterFactoryBean;
     }
-    
     
 
 
@@ -78,16 +81,19 @@ public class  ShiroConfig {
 
 
     @Bean
-    public TeacherRealm getTeacherRealm(){
-        
-        return new TeacherRealm();
+    public CookieRememberMeManager cookieRememberMeManager(){
+
+        ///配置记住我功能的cookie
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        simpleCookie.setMaxAge(259200000);
+        cookieRememberMeManager.setCookie(simpleCookie);
+        ///这一行必须要自己编码，不然每次登录都会报错一次
+        cookieRememberMeManager.setCipherKey(Base64.decode("6ZmI6I2j5Y+R5aSn5ZOlAA=="));
+
+        return cookieRememberMeManager;
     }
 
-    @Bean
-    public StudentRealm getStudentRealm(){
-        
-        return new StudentRealm();
-    }
 
     @Bean   
     public DefaultWebSecurityManager getDefaultWebSecurityManager(){
@@ -101,10 +107,22 @@ public class  ShiroConfig {
         realms.add(getTeacherRealm());
 
         securityManager.setRealms(realms);;
+        securityManager.setRememberMeManager(cookieRememberMeManager());
         //配置Realm
         return securityManager;
     }
 
 
+    @Bean
+    public Realm getTeacherRealm(){
+        
+        return new TeacherRealm();
+    }
+
+    @Bean
+    public Realm getStudentRealm(){
+        
+        return new StudentRealm();
+    }
 }
 

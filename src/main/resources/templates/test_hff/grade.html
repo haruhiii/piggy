@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>你的成绩单</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="./layui/css/layui.css"  media="all">
+</head>
+<body>
+      
+		   
+
+
+
+
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>课程名</th>
+      <th>平时成绩</th>
+	  <th>考试成绩</th>
+	  <th>总评成绩</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+	  <td>1</td>
+      <td>数值分析</td>
+      <td>88</td>
+      <td>90</td>
+	  <td>89</td>
+    </tr>
+     <tr>
+	  <td>2</td>
+      <td>Big Data</td>
+      <td>90</td>
+      <td>90</td>
+	  <td>90</td>
+    </tr>
+	 <tr>
+	  <td>3</td>
+      <td>Cloud Computing</td>
+      <td>95</td>
+      <td>95</td>
+	  <td>95</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
+
+
+//
+
+另一种表格形式
+<!--<table class="layui-hide" id="grade"></table>
+              
+          
+<script src="./layui/layui.js" charset="utf-8"></script>
+
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#grade'
+    ,url:'   '
+    ,cellMinWidth: 150 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+    ,cols: [[
+      {field:'id', width: '20%', title: 'ID', align:'center',sort: true}
+      ,{field:'coursename', width: '20%',align:'center' ,title: '课程名'}
+      ,{field:'regular_grade', width: '15%',align:'center', title: '平时成绩'}
+      ,{field:'exam_grade', width: '15%', align:'center',title: '考试成绩'}
+	  ,{field:'grade', width: '15%', align:'center',title: '总评成绩',sort: true}
+    ]]
+  });
+});
+</script> 
+

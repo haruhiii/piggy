@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Teacher {
+public class Teacher extends User{
 
 	/**
 	 * 这里需要一丢丢注释

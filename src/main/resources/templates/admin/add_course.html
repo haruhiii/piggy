@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理员首页</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <!--引入awesome图标库的样式表-->
+    <link rel="stylesheet" href="/res/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/res/css/global.css">
+</head>
+
+<body>
+    <!-- 你的HTML代码 -->
+    <div style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-md6">
+                <div class="layui-card" style="height:500px;">
+                    <div class="layui-card-header">
+                        <div>
+                        <a href="/">首页</a> /
+                        <a href="/demo/">演示</a> /
+                        <a><cite>导航元素</cite></a>
+                        </div>
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" action="/course/addCourse"  method="post">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">课程号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="course.id" lay-verify="name" autocomplete="off" placeholder="请输入课程号"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">课程名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="course.name" lay-verify="name" autocomplete="off" placeholder="请输入课程名"
+                                        class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">班级号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="clazz.id" lay-verify="name" autocomplete="off" placeholder="请输入班级号"
+                                        class="layui-input">
+                                </div>
+
+                            </div>
+                            
+                             <div class="layui-inline">
+                                <label class="layui-form-label">任课教师工号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="teacher.id" lay-verify="name" autocomplete="off" placeholder="请输入教师名"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn addCourse" lay-submit="" lay-filter="addCourse">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/res/layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.use(['layer', 'element', 'carousel', 'upload', 'form', 'rate', 'laypage'], function () {
+            var layer = layui.layer,
+                form = layui.form;
+            var element = layui.element;
+            var carousel = layui.carousel;
+            var rate = layui.rate;
+            var laypage = layui.laypage;
+            var upload = layui.upload;
+            var $ = layui.$;
+
+
+            //监听导航点击
+            element.on('nav(demo)', function (elem) {
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+
+            //绑定原始文件域
+            upload.render({
+                elem: '#test1',
+                url: '/upload/',
+                done: function (res) {
+                    console.log(res)
+                }
+            });
+            
+            $('.addCourse').click(function () {
+
+            	layer.closeAll('iframe');
+            	window.parent.location.reload();
+            })
+
+        });
+
+        //在这里编写js脚本
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理员首页</title>
+    <link rel="stylesheet" href="/res/layui/css/layui.css">
+    <!--引入awesome图标库的样式表-->
+    <link rel="stylesheet" href="/res/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/res/css/global.css">
+</head>
+
+<body>
+    <!-- 你的HTML代码 -->
+    <div style="padding: 20px; background-color: #F2F2F2;">
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-md6">
+                <div class="layui-card" style="height:500px;">
+                    <div class="layui-card-header">
+                        <div>
+                        <a href="/">首页</a> /
+                        <a href="/demo/">演示</a> /
+                        <a><cite>导航元素</cite></a>
+                        </div>
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" action="/users/update"  method="post">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">学/工号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="id" lay-verify="name" autocomplete="off" placeholder="请输入学/工号"
+                                        class="layui-input" th:value="${user.id}">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入姓名"
+                                        class="layui-input" th:value="${user.name}">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="password" lay-verify="name" autocomplete="off" placeholder="请输入密码"
+                                        class="layui-input" th:value="${user.password}">
+                                </div>
+
+                            </div>
+
+                            <!--  
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">班级号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入班级号"
+                                        class="layui-input">
+                                </div>
+
+                            </div>
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">班级名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入班级名"
+                                        class="layui-input">
+                                </div>
+
+                            </div>
+                            -->
+                            
+                            <div class="layui-inline">
+                                <label class="layui-form-label">身份</label>
+                                <div class="layui-input-inline">
+                                    <select name="type" th:value="${user.type}">
+                                        <option value="">请选择</option>
+                                        <option value="学生">学生</option>
+                                        <option value="教师">教师</option>
+                                       <!--   <option value="学生" th:selected="${user.type}=='1'">学生</option>-->
+                                        <!--  <option value="教师" th:selected="${user.type}=='0'">教师</option>-->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/res/layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.use(['layer', 'element', 'carousel', 'upload', 'form', 'rate', 'laypage'], function () {
+            var layer = layui.layer,
+                form = layui.form;
+            var element = layui.element;
+            var carousel = layui.carousel;
+            var rate = layui.rate;
+            var laypage = layui.laypage;
+            var upload = layui.upload;
+            var $ = layui.$;
+
+
+            //监听导航点击
+            element.on('nav(demo)', function (elem) {
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+
+            //绑定原始文件域
+            upload.render({
+                elem: '#test1',
+                url: '/upload/',
+                done: function (res) {
+                    console.log(res)
+                }
+            });
+
+
+        });
+
+        //在这里编写js脚本
+    </script>
+</body>
+
+</html>

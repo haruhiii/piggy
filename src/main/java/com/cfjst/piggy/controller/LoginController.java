@@ -2,7 +2,6 @@ package com.cfjst.piggy.controller;
 
 import java.util.Map;
 
-import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.shiro.UserToken;
 
 import org.apache.shiro.SecurityUtils;
@@ -11,6 +10,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -94,6 +94,8 @@ public class LoginController {
 
 
 
+
+
         // // if(!StringUtils.isEmpty(type)){
         //     if(type.equals("student")){
 
@@ -123,6 +125,16 @@ public class LoginController {
         // map.put("id", id);
         // map.put("type", type);
         // return "login";
+    }
+
+
+
+    //注销
+    @RequestMapping("/logout")
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/login";
     }
     
 }

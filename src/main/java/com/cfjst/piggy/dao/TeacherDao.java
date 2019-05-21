@@ -40,6 +40,11 @@ public interface TeacherDao {
      @Update({ "update teacher set name = #{name},password = #{password} where id = #{id}" })
     public void update(Teacher teacher);
     
+    /**
+     *根据ctc表里的teacherid查找teacher信息
+     */
+     @Select(" select * from teacher where id=#{id_teacher}")
+	  public Teacher findByTeacherId(Long id_teacher);
    
     
 }

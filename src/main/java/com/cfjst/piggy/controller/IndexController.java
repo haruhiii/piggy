@@ -8,11 +8,13 @@ import java.util.Map;
 import com.cfjst.piggy.bean.BigTask;
 import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.Student;
+import com.cfjst.piggy.bean.User;
 import com.cfjst.piggy.service.BigTaskService;
 import com.cfjst.piggy.service.SmallTaskService;
 import com.cfjst.piggy.service.StudentService;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,18 +28,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
 
 	@RequestMapping("/")
-	public String index(Map<String, Object> map) {
+	public String index() {
+		User user = (User)SecurityUtils.getSubject().getPrincipal();
+		System.out.println(user);
+		if(user!=null){
+			if(user.getId()>1000000l){
+				//自动跳转到学生页面
+				return "redirect:student";
+			}
+			if(user.getId()>99999){
+				//自动跳转到教师页面
 
-		StudentService service = new StudentService();
-		Long id = Long.valueOf(2016051093);
+				return "redirect:teacher";
+			}
+		}
+		
 
-		Student student = service.login(id, "123456");
-		student.getCourses();
-		map.put("student", student);
-		System.out.println(student.getName());
-		return "index";
+		return "login";
 	}
 
+	//之后可以删除这个mapping，已经基本实现自动跳转
 	@RequestMapping("/login")
 	public String login() {
 

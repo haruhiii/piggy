@@ -42,6 +42,14 @@ public interface CourseDao {
     })
 	public List<Course> findByStudentId(Long id);
 
+	/**
+	 *根据CTC表里的courseid查找course里的信息
+	 *@param id 课程号
+	 *@param id_course ctc表里的课程号
+	 */
+	@Select("select * from course where id = #{id_course}")
+	public Course findByCourseId(int id_course);
+
 
 
 

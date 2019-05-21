@@ -12,9 +12,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Student implements Serializable{
+public class Student extends User{
 
-	private static final long serialVersionUID = -6186110806485044555L;
 	/**
 	 * 这里需要一丢丢注释
 	 * 
