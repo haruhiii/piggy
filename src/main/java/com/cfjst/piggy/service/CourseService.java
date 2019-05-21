@@ -3,6 +3,7 @@ package com.cfjst.piggy.service;
 import java.util.List;
 
 import com.cfjst.piggy.bean.Course;
+import com.cfjst.piggy.bean.CTC;
 import com.cfjst.piggy.dao.CourseDao;
 import com.cfjst.piggy.dao.CtcDao;
 import com.cfjst.piggy.util.SqlUtil;
@@ -27,4 +28,34 @@ public class CourseService {
         return courses;
       
     }
+
+    public List<CTC> findAllCourse() {
+
+		return ctcDao.findAllCourse();
+	}
+
+	public void addCTC(CTC ctc)  {
+		ctcDao.addCTC(ctc);
+	}
+    public void addCourse(Course course) {
+		ctcDao.addCourse(course);
+	}
+    
+    public void updateCTC(CTC ctc) {
+    	
+		ctcDao.updateCTC(ctc);
+    	
+	}
+    public void updateCourse(Course course)  {
+		ctcDao.updateCourse(course);
+    	
+	}
+
+    public CTC findByCTCId(int id) {
+		return ctcDao.findByCTCId(id);
+	}
+    
+    public void deleteCourse(int id)  {
+		ctcDao.deleteCourse(id);
+	}
 }

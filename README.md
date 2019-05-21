@@ -38,3 +38,13 @@
         V 现在可以工作了？ //执行完CTC controller test Shutting down ExecutorService 'applicationTaskExecutor'
         bbubu'xbu'xibu'xinbu'xing不行不行不行
         现在都在里面  我运行了一下CTC  controller 报错
+
+
+
+
+
+
+23点12分  
+    V 先这样吧 ，先不管样式问题了，直接实现功能吧，样式先不管
+    V 教师部分的功能有实现过吗
+    F教师功能还没实现

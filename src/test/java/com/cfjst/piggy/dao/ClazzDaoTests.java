@@ -54,7 +54,7 @@ public class ClazzDaoTests {
         //获取班级的所有信息测试，包括课程信息
         Integer id = 2;
         Clazz clazze = dao.findByClazzIdWithCourse(id);
-        assertEquals(3,clazze.getCourses().size());        
+        assertEquals(4,clazze.getCourses().size());        
         assertEquals("计算机科学与技术162",clazze.getName());
 
         // for(Course course:clazze.getCourses()){

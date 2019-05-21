@@ -1,4 +1,4 @@
-// package com.cfjst.piggy.controller;
+ package com.cfjst.piggy.controller;
 
 // import org.springframework.stereotype.Controller;
 // import org.springframework.web.bind.annotation.RequestMapping;

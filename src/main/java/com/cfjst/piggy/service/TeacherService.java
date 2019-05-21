@@ -1,5 +1,9 @@
 package com.cfjst.piggy.service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
 import com.cfjst.piggy.bean.Teacher;
 import com.cfjst.piggy.dao.TeacherDao;
 import com.cfjst.piggy.util.SqlUtil;
@@ -33,8 +37,22 @@ public class TeacherService {
         
     }
     
+    
     public Teacher getById(Long id){
         
         return dao.findById(id);
     }
+    /**
+     * 查找所有教师信息
+     */
+    public List<Teacher> findAllTeacher() {
+		
+		return dao.findAllTeacher();
+	}
+	/**
+     * 添加教师信息
+     */
+	public void addTeacher(Teacher teacher) throws IOException {
+		dao.addTeacher(teacher);
+	}
 }

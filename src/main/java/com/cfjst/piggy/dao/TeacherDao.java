@@ -6,7 +6,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;;
+import org.apache.ibatis.annotations.Update;
+import java.util.List;
 
 /**
  * 此处需注释
@@ -46,5 +47,9 @@ public interface TeacherDao {
      @Select(" select * from teacher where id=#{id_teacher}")
 	  public Teacher findByTeacherId(Long id_teacher);
    
-    
+     @Select("select * from teacher")
+	  public List<Teacher> findAllTeacher();
+	
+	  @Insert("insert into teacher(name, password) value (#{password}, #{name})")
+	  public void addTeacher(Teacher teacher);
 }
