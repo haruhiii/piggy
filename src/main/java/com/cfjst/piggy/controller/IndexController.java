@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.cfjst.piggy.bean.BigTask;
+import com.cfjst.piggy.bean.Course;
 import com.cfjst.piggy.bean.SmallTask;
 import com.cfjst.piggy.bean.Student;
 import com.cfjst.piggy.bean.User;
 import com.cfjst.piggy.service.BigTaskService;
+import com.cfjst.piggy.service.CourseService;
 import com.cfjst.piggy.service.SmallTaskService;
 import com.cfjst.piggy.service.StudentService;
 
@@ -59,20 +61,57 @@ public class IndexController {
 
 		Student student = (Student) SecurityUtils.getSubject().getPrincipal();
 		// List<Course> courses = student.getCourses();
-		map.put("student", student);
 
-		// CourseService service = new CourseService();
-		// List<Course> courses = service.findByStudentId(id);
-		// redirectAttributes.addFlashAttribute("course", courses);
+                
+
 
 		// 本页刷新异常 已解决
+		CourseService courseService = new CourseService();
+		List<Course> courses = courseService.findByStudentId(student.getId());
+		for(Course course :courses){
+			System.err.println(course.getName());
+		}
+		BigTaskService bigTaskService = new BigTaskService();
+		List<BigTask> bigTasks;
+		// 设置课程颜色
+		for(Course course:courses){
+			bigTasks =  bigTaskService.getBigTaskByCASId(course.getId(), student.getId());
+			bigTaskService.getBigTaskPercentBySSId(student.getId(), course.getId(),bigTasks);
+			boolean flag=false;
+			course.setWorningType("green");
+			course.setWorningText("相对优秀");
+			for(BigTask bigTask:bigTasks){
+				if(bigTask.getPercent()!=0 && bigTask.getPercent()<60){
+					course.setWorningType("red");
+					course.setWorningText("极可能挂科！");
+					System.out.println("setRed");
+					// TODO 删除
+					flag=true;
+				}
+					
+			} 
+			if(!flag){
+				for(BigTask bigTask:bigTasks){
+					if(bigTask.getPercent()!=0 && bigTask.getPercent()<80){
+						course.setWorningText("可能会挂哦~");
+						course.setWorningType("orange");
+					}
+				} 
+			}
+				
+			// courses.add(course);
+		}
 
-		// List<Course> courses = (List<Course>)
-		// redirectAttributes.getFlashAttributes().get("course");
-		// for(Course course :courses){
-		// System.err.println(course.getName());
-		// }
-		// map.put("courses", courses);
+
+		for(Course course:courses){
+			System.out.println(course.getName());
+			System.out.println(course.getWorningType());
+
+		}
+
+
+		map.put("courses", courses);
+		map.put("student", student);
 
 		return "student/index";
 	}

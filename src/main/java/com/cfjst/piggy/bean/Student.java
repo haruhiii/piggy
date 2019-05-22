@@ -42,5 +42,9 @@ public class Student extends User{
         CourseService service = new CourseService();
         List<Course> courses = service.findByStudentId(this.id);
 		return courses;
+	}	
+	public void setCourses( List<Course> courses) {
+		
+		this.courses=courses;
 	}
 }

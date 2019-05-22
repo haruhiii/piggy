@@ -1,7 +1,15 @@
 package com.cfjst.piggy.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.Pattern.Flag;
+
+import com.cfjst.piggy.bean.BigTask;
+import com.cfjst.piggy.bean.Course;
+import com.cfjst.piggy.bean.Student;
+import com.cfjst.piggy.service.BigTaskService;
 import com.cfjst.piggy.shiro.UserToken;
 
 import org.apache.shiro.SecurityUtils;
@@ -54,11 +62,7 @@ public class LoginController {
                 // Student student =  (Student)subject.getPrincipal();
               //  List<Course> courses = student.getCourses();
                 // redirectAttributes.addFlashAttribute("student",student);
-                
-                
-                // CourseService service = new CourseService();
-                // List<Course> courses = service.findByStudentId(id);
-                // redirectAttributes.addFlashAttribute("course", courses);
+        
                 redirectTarget.setUrl("/student");
               //  return "redirect:/student";
             }else{                

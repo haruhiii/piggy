@@ -54,3 +54,12 @@
     margin-left: 20px;
     color: #f3faf8;
 }
+.red{
+    background: rgb(255, 227, 227);
+}
+.green{
+    background: rgb(211, 253, 224);
+}
+.orange{
+    background: rgb(252, 226, 202);
+}

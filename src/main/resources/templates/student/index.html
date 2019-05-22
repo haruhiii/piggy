@@ -140,13 +140,16 @@
 
         <div class="layui-tab-content">
             <!-- 当前课程 -->
-           <div class="layui-tab-item layui-show" >
-              <div th:each="course : ${student.courses}">  
-                  <div class="layui-card course " name="course" th:onclick="'fun('+${course.id}+')'" th:id="${course.id}" >  
-                      <div class="layui-card-header course-status" >课程正常</div>
+
+           
+
+           <div class="layui-tab-item layui-show " >
+              <div th:each="course : ${courses}">  
+                  <div  th:attr="class=|layui-card course  ${course.worningType}|"  name="course" th:onclick="'fun('+${course.id}+')'" th:id="${course.id}" >  
+                      <div class="layui-card-header course-status" th:text="${course.worningText}" >课程正常</div>
                       <div class="layui-card-body">
-                        <div class="course-name" th:text="${course.name}">概率论与数理统计</div>
-                        <div class="course-result">不合格</div>
+                        <div class="course-name" th:text="${course.name} ">概率论与数理统计</div>
+                        <div class="course-result">A</div>
                       </div>
                     </div>   
                   </div>

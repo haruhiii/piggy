@@ -26,5 +26,8 @@ public class Course {
 
 	private Long teacherId;
 
+	private String worningType;
+	private String worningText;
+
 
 }
