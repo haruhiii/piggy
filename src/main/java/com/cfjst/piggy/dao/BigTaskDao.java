@@ -87,7 +87,7 @@ public interface BigTaskDao {
                 score.id_big_task = 2
      * 获取某一个大项的得分百分比
      */
-    @Select("SELECT avg(score) FROM sbff.score WHERE score.id_student = ${studentId} and score.id_course = ${courseId} and score.id_big_task = ${bigTaskId}")
+    @Select("SELECT avg(score) FROM sbff.score WHERE score.id_student = ${studentId} and score.id_course = ${courseId} and score.id_big_task = ${bigTaskId} and score.score<>-1 and score.score<>-2")
     public Integer getBigTaskAvg(Integer courseId,Long studentId,Integer bigTaskId);
 
 	// private String smallTaskName;

@@ -25,15 +25,31 @@ public class SmallTaskServiceTests {
     @Test
     public void findByStudentIdTest() {
        
+        Long studentId = 2016051094l;
 		//  List<Course> courses = student.getCourses();
 		SmallTaskService service = new SmallTaskService();
-        List<SmallTask> tasks = service.getSmallTaskByCASId(  Integer.valueOf(1), Long.valueOf(2016051094));
-        for(SmallTask task:tasks){
-            System.out.println(task.getSmallTaskName());
-
+        List<SmallTask> smallTasks = service.getSmallTaskByCASId(  Integer.valueOf(1), studentId);
+        service.autoSetSmallTaskScore(studentId, smallTasks);
+        for(SmallTask task:smallTasks){
+          System.out.println(task.getScore());
         }
+    }
+    @Test
+
+    public void updateTest() {
+       
+        Long studentId = 2016051094l;
+        Integer courseId=1;
+        Integer bigId=1;
+        Integer smallId=1;
+        Float score=88f;
+		//  List<Course> courses = student.getCourses();
+		SmallTaskService service = new SmallTaskService();
+        System.out.println(service.updateTask(studentId, courseId, bigId, smallId, score)); 
     }
 
 
+    // if(!){
+    //     service.InsertTask(student.getId(), courseId, bigId, smallId, -1f);
     
 }

@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Student extends User{
+public class Student extends User {
 
 	/**
 	 * 这里需要一丢丢注释

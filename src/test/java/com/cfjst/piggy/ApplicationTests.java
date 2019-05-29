@@ -1,13 +1,28 @@
 package com.cfjst.piggy;
 
-import com.cfjst.piggy.bean.CTC;
-import com.cfjst.piggy.dao.BigTaskDao;
-import com.cfjst.piggy.dao.CtcDao;
-import com.cfjst.piggy.util.SqlUtil;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSONObject;
+import com.cfjst.piggy.bean.BigTask;
+import com.cfjst.piggy.bean.SmallTask;
+import com.cfjst.piggy.bean.Student;
+import com.cfjst.piggy.service.BigTaskService;
+import com.cfjst.piggy.service.SmallTaskService;
+import com.cfjst.piggy.service.StudentService;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,63 +37,121 @@ public class ApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 		
+		Date data = new Date();
 	}
+
+/**
+ * Description:
+ * <p>计算项目代码行数</p>
+ * Create by hry
+ */
+
+private String [] ignore = {
+		"ees-migration",
+		//"ees-proxy",
+		"ees-task",
+};
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Test
-	public void jsonTests(){
-				
+	public void foo(){
 
+		String path = "C:\\Users\\Power\\Desktop\\piggy\\src\\main\\resources";
 
+		File srcfolder = new File(path);
 
+		if(!srcfolder.exists()){
+			return;
+		}
 
-		// Tasks tasks = new Tasks();
-		// tasks.addBigTask("平时作业", 1, 0.25f);
+		HashMap<String, File> objectObjectHashMap = new HashMap<>();
+		Map<String, File> map = showAllFiles(srcfolder, objectObjectHashMap);
+		assert map != null;
+		logger.info("共有文件{}个",map.size());
 
+		int num = 0;
 
+		for(File file : map.values()){
+			//int line = getLine(file, "//", "/*", "*/", "*");
+			int line = getLine(file);
+			num += line;
+		}
 
-
-
-
-
-
-
-
-			/**
-			 * 考核名 权重 考核单词名 截止时间
-			//  */
-			// HashMap<String,HashMap<Float,HashMap<String,Date>>> tasks = new HashMap<String,HashMap<Float,HashMap<String,Date>>>();
-			// tasks.put("平时作业", null );
-			// tasks.put("考勤", null );
-			// tasks.put("实验", null );
-
-			
-			
-			// HashMap<String,HashMap<String,String>> task = new HashMap<String,Float>();
-			// task.put("第一次作业", 0.25);
-
-
-
-			// HashMap<String,ArrayList<String>> taskdetail = new HashMap<String,ArrayList<String>>();
-			// taskdetail.add("第一次作业",)
-
-
-			// tasks.put("考勤", 1);	
-			// tasks.put("实验", 1);
-			// tasks.put("平时测验", 1);
-
-		/**
-		 * 		总次数：
-		 * 			平时作业
-		 * 				第一次作业
-		 * 				第二次作业
-		 * 			考勤
-		 * 				第一次考勤
-		 * 				第二次考勤
-		 * 			实验
-		 * 				第一次实验
-		 * 				第二次实验
-		 */
-
+		logger.info("总行数:{}",num);
 	}
+
+	/**
+	 * 获取文件夹下所有文件
+	 * @param file      必须为一个文件夹
+	 * @param data      初始化为分配空间但空间内无数据的map
+	 */
+	private Map<String,File> showAllFiles(File file, Map<String, File> data){
+
+		File[] files = file.listFiles();
+		if(files == null || files.length == 0){
+			return null;
+		}
+
+		for (File f : files) {
+			if (f.isDirectory()) {
+				showAllFiles(f,data);
+			} else {
+				data.put(f.getPath(),f);
+			}
+		}
+
+		return data;
+	}
+
+	/**
+	 * 计算文件有效行数
+	 * 匹配指定格式文件（java），设置匹配规则Patton
+	 * 计算行数
+	 * patton: 文件行内包含该字符的会被忽略
+	 * file  : 具体文件
+	 */
+	private int getLine(File file,String...patton){
+
+		if(!file.getName().endsWith(".css")){
+			return 0;
+		}
+
+		int temp = 0;
+		try {
+			String line;
+			BufferedReader fileReader = new BufferedReader(new FileReader(file));
+			while ((line = fileReader.readLine()) != null){
+				if(line.trim().length() == 0){
+					continue;
+				}
+
+				boolean flag = true;
+
+				/**
+				 * 计算行数
+				 * 每行内存在patton的字符则过滤，不予计算
+				 */
+				if(patton != null && patton.length > 0){
+					List<String> strings = Arrays.asList(patton);
+					for(String p : strings){
+						if(line.contains(p)){
+							flag = false;
+							break;
+						}
+					}
+				}
+
+				if(flag){
+					temp ++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
+
 }

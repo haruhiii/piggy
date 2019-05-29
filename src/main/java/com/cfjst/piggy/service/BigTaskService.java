@@ -40,7 +40,6 @@ public class BigTaskService {
             }
             //取到一个大项的平均值
             Integer percent = dao.getBigTaskAvg(courseId, studentId, bigTask.getId());
-            System.out.println(dao.getBigTaskAvg(courseId, studentId, bigTask.getId()));
 
             if(percent==null){
                 percent=0;

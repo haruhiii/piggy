@@ -22,7 +22,7 @@
                 </div>
             </div>
             
-            </div>   
+        </div>   
             <!-- 考勤
             <div class="layui-progress layui-progress-big" lay-showPercent="yes">
                 <div class="layui-progress-bar layui-bg-red	" lay-percent="50%"></div>
@@ -39,85 +39,23 @@
     
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>待处理</legend>
+            <legend>当前</legend>
         </fieldset>    
-        <table class="layui-table">
-            <!-- <colgroup>
-            <col width="500">
-            <col width="200">
-            <col>
-        </colgroup> -->
-        <thead>
-            <tr>
-            <th lay-data="{field:'username', width:350}">标题</th>
-            <th lay-data="{field:'type', width:150, sort:true}">分类</th>
-            <th lay-data="{field:'experience', width:150, sort:true}">截止时间</th>  
-            <th lay-data="{field:'status', width:100}">状态</th>          
-            <th lay-data="{field:'sign'}">操作</th>
-            </tr> 
-        </thead>
-        <tbody>
-            <tr>
-            <td>2016级数值分析上机实验四(最小二乘曲线拟合)</td>
-            <td>平时作业</td>
-            <td>2016-11-29</td>
-            <td>已提交</td>
-            <td>修改</td>
-            </tr>
-            <tr>
-            <td>2016级数值分析上机实验二(解线性方程组)	</td>
-            <td>平时作业</td>
-            <td>2016-11-28</td>
-            <td>待处理</td>
-            <td>提交</td>
-            </tr>
-            <tr>
-            <td>第一次考勤</td>
-            <td>考勤</td>
-            <td>2016-11-28</td>
-            <td>旷课</td>
-            <td>处理</td>
-            </tr>
-        </tbody>
-        </table>
+        <table id="now" ></table>
+        <div id="now1"></div>
+
 
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>已结束</legend>
+            <legend>已截止</legend>
         </fieldset>    
 
-        <table class="layui-table">
-            <!-- <colgroup>
-            <col width="500">
-            <col width="200">
-            <col>
-            </colgroup> -->
-            <thead>
-                <tr>
-                <th lay-data="{field:'username', width:350}">标题</th>
-                <th lay-data="{field:'type', width:150, sort:true}">分类</th>
-                <th lay-data="{field:'experience', width:200, sort:true}">截止时间</th>
-                <th lay-data="{field:'score', width:100}">分数</th>
-                <th lay-data="{field:'sign'}">操作</th>
+        <table id="over" ></table>
+        <div id="over1"></div>
 
-                </tr> 
-            </thead>
-            <tbody>
-
-                <tr  th:each="task : ${tasks}">
-                    <td th:text="${task.smallTaskName}">smallTaskName</td>
-                    <td th:text="${task.bigTaskName}">bigTaskName</td>
-                    <td th:text="${task.deadline}">deadline</td>
-                    <td th:text="${task.score}">80</td>
-                    <td t>查看</td>
-                </tr>
-               
-                                                                                   
-            </tbody>
-            </table>
-    
 
     </body>
 
+   
 
     
     <script src="../layui/layui.js"></script>
@@ -157,13 +95,103 @@
             });
         layui.use('table', function(){
         var table = layui.table;
-            //转换静态表格
-            table.init('demo', {
-            // height: 315 //设置高度
-            limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
-            //支持所有基础参数
-            }); 
-        }); 
+        table.render({
+            elem: '#now'
+            ,url: '/student/course/score?courseId='+'[[${courseId}]]' //数据接口
+            ,request: {
+                courseId:  [[${courseId}]],
+                limit:3
+             }
+            ,response: {
+                statusName: 'code' //规定数据状态的字段名称，默认：code
+                ,statusCode: 0 //规定成功的状态码，默认：0
+                ,dataName: 'tasksNow' //规定数据列表的字段名称，默认：data
+            } 
+            ,cols: [[ //表头
+            {field: 'smallTaskName', title: '标题', width:300, sort: true, fixed: 'left'}
+            ,{field: 'bigTaskName', title: '分类', width:160}
+            ,{field: 'deadline'  , title: '截止时间'  , width:140  , sort: true}
+            ,{field: 'score'
+                , title: '备注'
+                , width:120
+                ,templet : function(d) {
+                    var score = d.score;
+                    if(score==-1){
+                            return '批改中'
+                    }else if(score==-2){
+                        return '待提交'
+                    }else {
+                        return '得分：'+score
+                    }	
+		    	}
+            } 
+            ,{field: 'score', title: '操作',
+            templet: function(d) {
+                return '<a href="/student/uploadTask?courseId=[[${courseId}]]&bigId='+d.bigTaskId+'&smallId='+d.id+'">提交</a>'
+                }
+                ,width:140} 
 
+            ]]
+           
+          
+          });
+
+
+
+
+
+        table.render({
+            elem: '#over'
+            ,url: '/student/course/score?courseId='+'[[${courseId}]]' //数据接口
+            ,request: {
+                courseId:  [[${courseId}]],
+                limit:3
+             }
+            ,response: {
+                statusName: 'code' //规定数据状态的字段名称，默认：code
+                ,statusCode: 0 //规定成功的状态码，默认：0
+                ,dataName: 'tasks' //规定数据列表的字段名称，默认：data
+            } 
+            ,cols: [[ //表头
+            {field: 'smallTaskName', title: '标题', width:300, sort: true, fixed: 'left'}
+            ,{field: 'bigTaskName', title: '分类', width:160}
+            ,{field: 'deadline'  , title: '截止时间'  , width:140  , sort: true}
+            ,{field: 'score'
+                , title: '分数'
+                , width:80
+                ,templet : function(d) {
+                    var score = d.score;
+                    if(score<0){
+                            return '0'
+                    }else{
+                        return score
+                    }
+                }
+            }
+            ,{field: ' '
+                , title: '备注'
+                , width:80
+                ,templet : function(d) {
+                    var score = d.score;
+                    if(score==-1){
+                            return '批改中'
+                    }else if(score==-2){
+                        return '未提交'
+                    }
+                    return '无'
+		    	}
+            }
+            ,{field: ' ', title: '操作', templet: function(d) {return '查看'},width:80} 
+            ]]
+            ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+            //,curr: 5 //设定初始在第 5 页
+            ,groups: 5 //只显示 1 个连续页码
+            ,limits:[5,10,15,20,30,50]
+            ,limit:5
+            }
+          });
+        }); 
+       
         </script>
 </html>
